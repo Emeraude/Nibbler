@@ -3,10 +3,13 @@ NAME		= 	nibbler
 DIR		=	src
 
 SRC		+=  	$(DIR)/main.cpp
+SRC		+=  	$(DIR)/Snake.cpp
+SRC		+=  	$(DIR)/Core.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
 CXXFLAGS	+= 	-W -Wall -Wextra
+CXXFLAGS	+= 	-I includes
 
 RM		= 	rm -f
 
