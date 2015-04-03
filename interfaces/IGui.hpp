@@ -7,7 +7,7 @@ class IGui
 {
   virtual ~IGui() { };
 
-  virtual createWindows(std::pair<int, int>) = 0;
+  virtual int createWindows(std::pair<int, int>) = 0;
   virtual int launchMenu() = 0;
   virtual int launchGame(const Snake &) = 0;
   virtual int guiQuit() = 0;
