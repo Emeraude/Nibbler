@@ -9,9 +9,6 @@ class IGui
 public:
   virtual ~IGui() { };
 
-  /* createWindows -1 for failure */
-  virtual int createWindows(std::pair<size_t, size_t>) = 0;
-
   /* launchMenu return 0 for success and -1 for failure */
   virtual int launchMenu() = 0;
 

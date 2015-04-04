@@ -32,3 +32,8 @@ int			DynamicLoader::loadGui(const std::string &path)
   dlsym(_handle, "gui");
   return 0;
 }
+
+IGui *			DynamicLoader::getGui() const
+{
+  return _gui;
+}

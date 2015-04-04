@@ -13,7 +13,7 @@ class Core
 {
 private:
   DynamicLoader	*_dynLoader;
-  IGui *gui;
+  IGui *_gui;;
   Snake	_snake;
 
 public:

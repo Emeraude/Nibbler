@@ -3,6 +3,8 @@
 Core::Core()
 {
   _dynLoader->loadGui("");
+
+  _gui = _dynLoader->getGui();
 }
 
 Core::~Core()
@@ -41,10 +43,8 @@ int		Core::menu()
 {
   int		ret = 1;
 
-  if (gui->createWindows(std::pair<int, int>(1000, 500)) == -1)
-    return (-1);
   while (ret != 0 && ret != -1)
-    ret = gui->launchMenu();
+    ret = _gui->launchMenu();
   return ret;
 }
 
@@ -53,6 +53,6 @@ int		Core::game()
   int		ret = 1;
 
   while (ret != 0 && ret != -1)
-    ret = gui->launchGame(_snake);
+    ret = _gui->launchGame(_snake);
   return (ret);
 }
