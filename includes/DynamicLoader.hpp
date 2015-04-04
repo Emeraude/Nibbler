@@ -9,7 +9,7 @@ class DynamicLoader
 private:
   void	*_handle;
   IGui	*_gui;
-  IGui                  *(*display)(std::pair<std::size_t, std::size_t>);
+  IGui                  *(*_display)(std::pair<std::size_t, std::size_t>);
 
 public:
   DynamicLoader();

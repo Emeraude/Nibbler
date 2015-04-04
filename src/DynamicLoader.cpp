@@ -28,6 +28,7 @@ DynamicLoader&		DynamicLoader::operator=(const DynamicLoader& rhs)
 int			DynamicLoader::loadGui(const std::string &path)
 {
   void			*handle;
+  IGui                  *(*display)(std::pair<std::size_t, std::size_t>);
   //throw
 
   // std::string tpath = "/home/duques_g/Programming/Nibbler/sdl.so";
