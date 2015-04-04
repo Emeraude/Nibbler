@@ -1,4 +1,3 @@
-
 #include "LibX.hh"
 
 LibX::LibX(std::pair<size_t, size_t> dimension)

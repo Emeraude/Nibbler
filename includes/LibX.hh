@@ -40,7 +40,7 @@ public:
   virtual ~IGui();
 
   virtual int launchMenu();
-  virtual int launchGame(const Snake &);
+  virtual int printGame(const Snake &);
   virtual int guiQuit();
 };
 
