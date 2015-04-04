@@ -45,8 +45,35 @@ int	LibX::launchMenu()
   return (0);
 }
 
-int	LibX::launchGame(const Snake &snake)
+void	LibX::printSquare(int x, int y, GC colorContext)
 {
+  int	x_start = x * PIXELS_BY_CASE;
+  int	x_end = x_start + PIXELS_BY_CASE;
+  int	y_start = y * PIXELS_BY_CASE;
+  int	y_end = y_start + PIXELS_BY_CASE;
+
+  while (y_start < y_end) {
+    XDrawLine(_display, _window, colorContext, x_start, y_start, x_end, y_end);
+    ++y_start;
+  }
+}
+
+int	LibX::printGame(const Snake &snake)
+{
+  std::deque<std::pair<int, int> > s = snake.getSnake();
+  std::deque<std::pair<int, int> >::iterator it = s.begin();
+
+  if (it != s.end()) {
+    printSquare(it->first, it->second, _blueContext);
+    ++it;
+  }
+
+  while (it != s.end()) {
+    printSquare(it->first, it->second, _redContext);
+    ++it;
+  }
+
+  XFlush(_display);
   return (0);
 }
 

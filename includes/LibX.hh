@@ -32,12 +32,13 @@ private:
   char		*_red = RED_RGB;
   char		*_blue = BLUE_RGB;
 
+  void		printSquare(int x, int y);
+
 public:
 
   LibX(std::pair<size_t, size_t>);
   virtual ~IGui();
 
-  // virtual int createWindows(std::pair<int, int>);
   virtual int launchMenu();
   virtual int launchGame(const Snake &);
   virtual int guiQuit();
