@@ -5,6 +5,7 @@
 
 class IGui
 {
+public:
   virtual ~IGui() { };
 
   /* createWindows -1 for failure */
@@ -18,6 +19,6 @@ class IGui
 
   /* guiQuit return 0 for success and -1 for failure */
   virtual int guiQuit() = 0;
-}
+};
 
 #endif

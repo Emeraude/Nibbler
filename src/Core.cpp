@@ -2,7 +2,7 @@
 
 Core::Core()
 {
-  gui.loadGui();
+  _dynLoader->loadGui();
 }
 
 Core::~Core()
@@ -22,7 +22,7 @@ Core&		Core::operator=(const Core &rhs __attribute__((unused)))
   return *this;
 }
 
-void		Core::launchGame()
+int		Core::launchGame()
 {
   int		ret;
 
@@ -41,10 +41,10 @@ int		Core::menu()
 {
   int		ret = 1;
 
-  if (create_windows(std::pair<int, int>(1000, 500)) == -1)
+  if (gui->createWindows(std::pair<int, int>(1000, 500)) == -1)
     return (-1);
   while (ret != 0 && ret != -1)
-    ret = launchMenu();
+    ret = gui->launchMenu();
   return ret;
 }
 
@@ -53,6 +53,6 @@ int		Core::game()
   int		ret = 1;
 
   while (ret != 0 && ret != -1)
-    ret = launchGame();
+    ret = gui->launchGame(_snake);
   return (ret);
 }
