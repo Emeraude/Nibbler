@@ -1,9 +1,15 @@
+#include <dlfcn.h>
 #include "Core.hpp"
 
 Core::Core(const std::string &libPath)
 {
-  _dynLoader->loadGui(libPath);
-  _gui = _dynLoader->getGui();
+  IGui                  *(*display)(std::pair<std::size_t, std::size_t>);
+
+  void *symbol = _dynLoader->loadGui(libPath);
+
+
+  display = reinterpret_cast<IGui *(*)(std::pair<size_t, size_t>)>(dlsym(symbol, "loadGui"));
+  _gui = (display)(std::pair<std::size_t, std::size_t>(1000, 500));
   // _gui = new (sdlGui)(std::pair<size_t, size_t>(1000, 500));
 
 }
