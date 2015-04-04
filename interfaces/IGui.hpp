@@ -2,6 +2,7 @@
 # define IGUI_HPP
 
 # include <utility>
+# include "Snake.hpp"
 
 class IGui
 {

@@ -34,22 +34,22 @@ Snake&		Snake::operator=(const Snake& rhs)
 
 std::pair<int, int>		Snake::setDirRight()
 {
-  return _snake.back();
+  return std::pair<int, int>(_snake.back().first + 1, _snake.back().second);
 }
 
 std::pair<int, int>		Snake::setDirDown()
 {
-  return _snake.back();
+  return std::pair<int, int>(_snake.back().first, _snake.back().second + 1);
 }
 
 std::pair<int, int>		Snake::setDirLeft()
 {
-  return _snake.back();
+  return std::pair<int, int>(_snake.back().first - 1, _snake.back().second);
 }
 
 std::pair<int, int>		Snake::setDirTop()
 {
-  return _snake.back();
+  return std::pair<int, int>(_snake.back().first, _snake.back().second - 1);
 }
 
 void		Snake::move()
