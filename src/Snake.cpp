@@ -54,6 +54,7 @@ std::pair<int, int>		Snake::setDirTop()
 
 void		Snake::move()
 {
+  _snake.pop_front();
   _snake.push_back(std::pair<int, int>((this->*ptr[_dir])()));
 }
 
@@ -65,4 +66,9 @@ void		Snake::moveLeft()
 void		Snake::moveRight()
 {
   _dir += !_dir ? 4 : -1;
+}
+
+std::deque<std::pair<int, int> > Snake::getSnake() const
+{
+  return (_snake);
 }

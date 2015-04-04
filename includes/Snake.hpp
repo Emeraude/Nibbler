@@ -24,6 +24,7 @@ public:
   void		move();
   void		moveLeft();
   void		moveRight();
+  std::deque<std::pair<int, int> > getSnake() const;
 };
 
 #endif
