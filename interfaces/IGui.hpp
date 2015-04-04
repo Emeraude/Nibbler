@@ -13,7 +13,8 @@ public:
   virtual int launchMenu() = 0;
 
   /* launchGame return 0 for success and -1 for failure */
-  virtual int launchGame(const Snake &) = 0;
+  virtual int printGame(const Snake &) = 0;
+  virtual int EventManager(const Snake &) = 0;
 
   /* guiQuit return 0 for success and -1 for failure */
   virtual int guiQuit() = 0;
