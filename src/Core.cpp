@@ -2,7 +2,7 @@
 
 Core::Core()
 {
-  _dynLoader->loadGui();
+  _dynLoader->loadGui("");
 }
 
 Core::~Core()
