@@ -1,20 +1,18 @@
-NAME		= 	nibbler
+NAME		= 	sdl.so
 
 DIR		=	src
 
-SRC		+=  	$(DIR)/main.cpp
-SRC		+=  	$(DIR)/Snake.cpp
-SRC		+=  	$(DIR)/Core.cpp
-SRC		+=  	$(DIR)/DynamicLoader.cpp
+SRC		+=  	sdlGui.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
+CXXFLAGS	+=	-fPIC
 CXXFLAGS	+= 	-W -Wall -Wextra
-CXXFLAGS	+= 	-I includes
-CXXFLAGS	+= 	-I interfaces
-CXXFLAGS	+= 	-g
+CXXFLAGS	+= 	-I ../../includes
+CXXFLAGS	+= 	-I ../../interfaces
 
-LDXXFLAGS	+=	-ldl
+LDXXFLAGS	+=	-lSDL
+LDXXFLAGS	+=	-shared
 
 RM		= 	rm -f
 

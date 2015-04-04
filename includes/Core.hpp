@@ -17,12 +17,12 @@ private:
   Snake	_snake;
 
 public:
-  Core();
+  Core(const std::string&);
   ~Core();
   Core(const Core &);
   Core& operator=(const Core &);
 
-  int	launchGame();
+  void	launchGame();
 
   int	menu();
   int	game();

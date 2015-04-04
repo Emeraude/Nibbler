@@ -1,10 +1,11 @@
 #include "Core.hpp"
 
-Core::Core()
+Core::Core(const std::string &libPath)
 {
-  _dynLoader->loadGui("");
-
+  _dynLoader->loadGui(libPath);
   _gui = _dynLoader->getGui();
+  // _gui = new (sdlGui)(std::pair<size_t, size_t>(1000, 500));
+
 }
 
 Core::~Core()
@@ -24,26 +25,17 @@ Core&		Core::operator=(const Core &rhs __attribute__((unused)))
   return *this;
 }
 
-int		Core::launchGame()
+void		Core::launchGame()
 {
-  int		ret;
-
-  ret = menu();
-  if (!ret)
-    return EXIT_SUCCESS;
-  else if (ret == -1)
-    return EXIT_FAILURE;
-  ret = game();
-  if (!ret)
-    return EXIT_SUCCESS;
-  return EXIT_FAILURE;
+  menu();
+  game();
 }
 
 int		Core::menu()
 {
   int		ret = 1;
 
-  while (ret != 0 && ret != -1)
+  while (ret != 0)
     ret = _gui->launchMenu();
   return ret;
 }
@@ -53,6 +45,6 @@ int		Core::game()
   int		ret = 1;
 
   while (ret != 0 && ret != -1)
-    ret = _gui->launchGame(_snake);
+    ret = _gui->printGame(_snake);
   return (ret);
 }
