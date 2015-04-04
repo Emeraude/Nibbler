@@ -10,6 +10,7 @@ OBJ		=	$(SRC:.cpp=.o)
 
 CXXFLAGS	+= 	-W -Wall -Wextra
 CXXFLAGS	+= 	-I includes
+CXXFLAGS	+= 	-I interfaces
 
 RM		= 	rm -f
 
