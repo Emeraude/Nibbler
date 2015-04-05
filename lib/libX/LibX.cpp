@@ -79,7 +79,7 @@ int	LibX::printGame(const Snake &snake)
   }
 
   if (it != s.end()) {
-    std::cout << "X: " << it->first << " Y: " << it->second << std::endl;
+    // std::cout << "X: " << it->first << " Y: " << it->second << std::endl;
     printSquare(it->first, it->second, _blueContext);
     ++it;
   }
@@ -99,11 +99,9 @@ int	LibX::eventManager(Snake &snake)
     KeySym key = XLookupKeysym(&_event.xkey, 0);
     switch (key) {
     case (XK_Left):
-      std::cout << "LEFT\n";
       snake.moveLeft();
       break;
     case (XK_Right):
-      std::cout << "RIGHT\n";
       snake.moveRight();
       break;
     case (XK_space):

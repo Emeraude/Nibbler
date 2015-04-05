@@ -30,7 +30,7 @@ void		Core::loadGui(const std::string & path)
   void *symbol = _dynLoader->loadGui(path);
 
   display = reinterpret_cast<IGui *(*)(std::pair<size_t, size_t>)>(dlsym(symbol, "loadGui"));
-  _gui = (display)(std::pair<std::size_t, std::size_t>(1000, 500));
+  _gui = (display)(std::pair<std::size_t, std::size_t>(50, 50));
 }
 
 void		Core::launchGame()
