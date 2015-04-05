@@ -106,9 +106,9 @@ void		Snake::moveRight()
   ++_dir %= 4;
 }
 
-void		Snake::growth(size_t const spd)
+void		Snake::growth(size_t const spd, size_t const mult)
 {
-  _score += 1000000 / spd;
+  _score += 1000000 / spd * mult;
   _eated += 1;
 }
 

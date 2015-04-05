@@ -69,10 +69,11 @@ void		Core::game()
     if (_snake.move())
       return ;
     if (_snake.getSnake().front() == _apple.getApple()) {
+      _snake.growth(_speed, _apple.getAge() <= _apple.getBonusAge() ? 2 : 1);
       _apple.generateApple(_snake);
-      _snake.growth(_speed);
       incSpeed();
     }
+    _apple.addAge(_speed);
     usleep(_speed);
   }
 }

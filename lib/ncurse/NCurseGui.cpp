@@ -1,24 +1,32 @@
 #include <iostream>
+#include <sys/ioctl.h>
 #include "NCurseGui.hpp"
 
 NCurseGui::NCurseGui(std::pair<std::size_t, std::size_t> dim)
 {
+  struct winsize w;
+  if ((ioctl(0, TIOCGWINSZ, &w)) == -1)
+    throw ResolutionException("Unable to get terminal resolution.");
+  if (dim.first <= 5 || dim.second <= 5
+      || dim.first > w.ws_row || dim.second > w.ws_col / 2)
+    throw ResolutionException("Invalid resolution.");
   _paused = false;
   _width = dim.first * 2;
   _height = dim.second;
-  _win = newwin(_height, _width, 0, 0);
   initscr();
   start_color();
   init_pair(1, COLOR_BLACK, COLOR_GREEN);
   init_pair(2, COLOR_BLACK, COLOR_RED);
   init_pair(3, COLOR_BLACK, COLOR_BLUE);
+  init_pair(4, COLOR_BLACK, COLOR_CYAN);
   raw();
   noecho();
   cbreak();
   curs_set(0);
   keypad(stdscr, TRUE);
   refresh();
-  _win = newwin(_height + 1, _width + 2, 0, 0);
+  if (!(_win = newwin(_height + 1, _width + 2, 0, 0)))
+    throw NCurseException("Unable to open the window.");
   box(_win, 0, 0);
 }
 
@@ -45,9 +53,9 @@ int		NCurseGui::printGame(const Snake& snake, const Apple & apple)
     mvwprintw(_win, it->first + 1, it->second * 2 + 1, "  ");
     wattroff(_win, COLOR_PAIR(2));
   }
-  wattron(_win, COLOR_PAIR(1));
+  wattron(_win, COLOR_PAIR(apple.getAge() > apple.getBonusAge() ? 1 : 4));
   mvwprintw(_win, apple.getApple().first + 1, apple.getApple().second * 2 + 1, "  ");
-  wattroff(_win, COLOR_PAIR(1));
+  wattroff(_win, COLOR_PAIR(apple.getAge() > apple.getBonusAge() ? 1 : 4));
   std::pair<size_t, size_t>   lastLink = snake.getLastChain();
   mvwprintw(_win, lastLink.first + 1, lastLink.second * 2 + 1, lastLink.first + 1 == _height ? "__" : "  ");
   wrefresh(_win);

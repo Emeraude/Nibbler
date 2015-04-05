@@ -18,11 +18,13 @@ sdlGui::sdlGui(std::pair<std::size_t, std::size_t> dim)
   if (!(_win = SDL_SetVideoMode(_height, _width, 32, SDL_HWSURFACE | SDL_DOUBLEBUF)))
     throw SDLException("Video configuration is unable to be set.");
   if (!(_apple = SDL_CreateRGBSurface(SDL_HWSURFACE, BLOC, BLOC, 32, 0, 0, 0, 0)) ||
+      !(_new_apple = SDL_CreateRGBSurface(SDL_HWSURFACE, BLOC, BLOC, 32, 0, 0, 0, 0)) ||
       !(_head = SDL_CreateRGBSurface(SDL_HWSURFACE, BLOC, BLOC, 32, 0, 0, 0, 0)) ||
       !(_body = SDL_CreateRGBSurface(SDL_HWSURFACE, BLOC, BLOC, 32, 0, 0, 0, 0)))
     throw SDLException("Texture is unable to be generated.");
   SDL_FillRect(_win, NULL, SDL_MapRGB(_win->format, 255, 255, 255));
   SDL_FillRect(_apple, NULL, SDL_MapRGB(_win->format, 0, 255, 0));
+  SDL_FillRect(_new_apple, NULL, SDL_MapRGB(_win->format, 0, 255, 255));
   SDL_FillRect(_head, NULL, SDL_MapRGB(_win->format, 0, 0, 255));
   SDL_FillRect(_body, NULL, SDL_MapRGB(_win->format, 255, 0, 0));
   SDL_WM_SetCaption("Nibbler SDL", NULL);
@@ -34,6 +36,7 @@ sdlGui::sdlGui(std::pair<std::size_t, std::size_t> dim)
 sdlGui::~sdlGui()
 {
   SDL_FreeSurface(_apple);
+  SDL_FreeSurface(_new_apple);
   SDL_FreeSurface(_body);
   SDL_FreeSurface(_head);
   SDL_FreeSurface(_win);
@@ -62,7 +65,7 @@ int		sdlGui::printGame(const Snake& snake, const Apple & apple)
   }
   _sqr.x = apple.getApple().first * BLOC;
   _sqr.y = apple.getApple().second * BLOC;
-  SDL_BlitSurface(_apple, NULL, _win, &_sqr);
+  SDL_BlitSurface(apple.getAge() > apple.getBonusAge() ? _apple : _new_apple, NULL, _win, &_sqr);
   SDL_Flip(_win);
   return 0;
 }

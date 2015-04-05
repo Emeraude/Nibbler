@@ -4,6 +4,8 @@
 Apple::Apple(const Snake& snake) :
   _snake(snake)
 {
+  _age = 0;
+  _bonus_age = 2000000;
   srand(time(NULL));
 }
 
@@ -21,8 +23,6 @@ Apple::~Apple()
 //   }
 //   return *this;
 // }
-
-#include <iostream>
 
 std::pair<int, int> Apple::generateTemporaryApple()
 {
@@ -45,6 +45,7 @@ bool		Apple::generateApple(const Snake& snake)
   	it = s.begin();
       }
     }
+  _age = 0;
   _apple = tmpApple;
   return true;
 }
@@ -52,4 +53,16 @@ bool		Apple::generateApple(const Snake& snake)
 const std::pair<int, int> & Apple::getApple() const
 {
   return _apple;
+}
+
+void Apple::addAge(size_t const age) {
+  _age += age;
+}
+
+size_t Apple::getAge(void) const {
+  return _age;
+}
+
+size_t Apple::getBonusAge(void) const {
+  return _bonus_age;
 }

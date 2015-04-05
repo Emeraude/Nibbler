@@ -34,7 +34,7 @@ public:
   int		move();
   void		moveLeft();
   void		moveRight();
-  void		growth(size_t const spd);
+  void		growth(size_t const spd, size_t const mult);
   const std::deque<std::pair<int, int> > getSnake() const;
   std::pair<int, int>	getLastChain() const;
 

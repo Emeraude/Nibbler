@@ -16,6 +16,7 @@ private:
 
   SDL_Surface *_win;
   SDL_Surface *_apple;
+  SDL_Surface *_new_apple;
   SDL_Surface *_body;
   SDL_Surface *_head;
   SDL_Surface *black;

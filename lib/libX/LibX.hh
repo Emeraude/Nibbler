@@ -16,6 +16,7 @@
 # include "LibXException.hpp"
 
 # define PIXELS_BY_CASE	(20)
+# define CYAN_RGB	("#00FFFF")
 # define RED_RGB	("#FF0000")
 # define BLUE_RGB	("#0000FF")
 # define WHITE_RGB	("#000000")
@@ -32,10 +33,12 @@ private:
   size_t	_sizeX;
   size_t	_sizeY;
   XEvent	_event;
+  GC		_cyanContext;
   GC		_redContext;
   GC		_blueContext;
   GC		_whiteContext;
   GC		_greenContext;
+  XColor	_cyanParsed;
   XColor	_redParsed;
   XColor	_blueParsed;
   XColor	_whiteParsed;
