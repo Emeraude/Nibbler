@@ -19,7 +19,7 @@ private:
   Apple _apple;
 
 public:
-  Core(const std::string&);
+  Core(const std::string&, const std::string&, const std::string&);
   ~Core();
   Core(const Core &);
   Core& operator=(const Core &);

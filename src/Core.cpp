@@ -1,11 +1,14 @@
 #include <dlfcn.h>
 #include <unistd.h>
+#include <sstream>
 #include "Core.hpp"
 #include "option.h"
 
-Core::Core(const std::string &libPath) :
+Core::Core(const std::string &casesX, const std::string &casesY, const std::string &libPath) :
   _snake(), _apple(_snake)
 {
+  std::istringstream(casesX) >> _caseX;
+  std::istringstream(casesY) >> _caseY;
   loadGui(libPath);
 }
 

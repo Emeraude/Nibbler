@@ -7,9 +7,9 @@ void		usage(const std::string& name)
 
 int		main(int argc, char **argv)
 {
-  if (argc == 2)
+  if (argc == 3)
     {
-      Core		game(argv[1]);
+      Core		game(argv[1], argv[2], argv[3]);
       game.launchGame();
     }
   else
