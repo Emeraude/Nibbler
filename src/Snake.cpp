@@ -16,6 +16,7 @@ Snake::Snake(size_t limitX, size_t limitY)
   ptr[3] = &Snake::setDirTop;
 
   _dir = 0;
+  _eated = 0;
   _lastChain = std::make_pair(-1, -1);
 }
 
@@ -25,7 +26,7 @@ Snake::~Snake()
 }
 
 Snake::Snake(const Snake & rhs) :
-  _snake(rhs._snake), _dir(rhs._dir), eated(rhs.eated), _limitX(rhs._limitX), _limitY(rhs._limitY)
+  _snake(rhs._snake), _dir(rhs._dir), _eated(rhs._eated), _limitX(rhs._limitX), _limitY(rhs._limitY)
 {
 
 }
@@ -72,10 +73,10 @@ bool				Snake::checkBorder() const
 int		Snake::move()
 {
   _lastChain = _snake.back();
-  if (!eated)
+  if (!_eated)
     _snake.pop_back();
   else
-    --eated;
+    --_eated;
   _dir %= 4;
   _snake.push_front(std::pair<int, int>((this->*ptr[_dir])()));
   if (!checkBorder())
@@ -95,7 +96,7 @@ void		Snake::moveRight()
 
 void		Snake::growth()
 {
-  eated += 3;
+  _eated += 3;
 }
 
 const std::deque<std::pair<int, int> > Snake::getSnake() const

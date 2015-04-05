@@ -62,8 +62,10 @@ void		Core::game()
     _gui->printGame(_snake, _apple);
     if (_snake.move())
       return ;
-    if (_snake.getSnake().front() == _apple.getApple())
+    if (_snake.getSnake().front() == _apple.getApple()) {
       _apple.generateApple(_snake);
+      _snake.growth();
+    }
     usleep(100000);
   }
 }

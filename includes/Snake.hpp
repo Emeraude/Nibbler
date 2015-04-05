@@ -10,7 +10,7 @@ class Snake
 private:
   std::deque<std::pair<int, int> >	_snake;
   int _dir;
-  int eated;
+  int _eated;
   std::pair<int, int> (Snake::*ptr[4])();
   std::pair<int, int>	_lastChain;
 
