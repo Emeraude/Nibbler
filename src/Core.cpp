@@ -1,4 +1,5 @@
 #include <dlfcn.h>
+#include <unistd.h>
 #include "Core.hpp"
 
 Core::Core(const std::string &libPath)
@@ -49,6 +50,7 @@ void		Core::menu()
 void		Core::game()
 {
   while (42) {
+    sleep(1);
     _snake.move();
     _gui->printGame(_snake);
     _gui->eventManager(_snake);
