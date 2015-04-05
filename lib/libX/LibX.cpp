@@ -10,8 +10,7 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
   char		red[] = RED_RGB;
   char		blue[] = BLUE_RGB;
 
-  Snake test;
-  // XSetErrorHandler((void*)0);
+// XSetErrorHandler((void*)0);
 
   if (!(_display = XOpenDisplay((char*)0))) {
     // ERROR
@@ -57,7 +56,9 @@ void	LibX::printSquare(int x, int y, GC colorContext)
   int	y_end = y_start + PIXELS_BY_CASE;
 
   while (y_start < y_end) {
-    XDrawLine(_display, _window, colorContext, x_start, y_start, x_end, y_end);
+    // std::cout << "X start: " << x_start << " Y start: " << y_start;
+    // std::cout << " X end: " << x_end << " Y end: " << y_end << std::endl;
+    XDrawLine(_display, _window, colorContext, x_start, y_start, x_end, y_start);
     ++y_start;
   }
 }
@@ -78,6 +79,7 @@ int	LibX::printGame(const Snake &snake)
   }
 
   XFlush(_display);
+  sleep(2);
   return (0);
 }
 

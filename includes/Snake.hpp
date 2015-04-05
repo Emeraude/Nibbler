@@ -22,9 +22,9 @@ public:
   std::pair<int, int> setDirTop();
 
   void		move();
-  static void		moveLeft();
-  static void		moveRight();
-  static std::deque<std::pair<int, int> > getSnake() const;
+  void		moveLeft();
+  void		moveRight();
+  std::deque<std::pair<int, int> > getSnake() const;
 };
 
 #endif

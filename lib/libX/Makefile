@@ -8,6 +8,7 @@ CXXFLAGS	+=	-fPIC
 CXXFLAGS	+= 	-W -Wall -Wextra
 CXXFLAGS	+= 	-I ../../interfaces
 CXXFLAGS	+= 	-I ../../includes
+CXXFLAGS	+= 	-g
 
 LDXXFLAGS	+=	-lX11
 LDXXFLAGS	+=	-shared

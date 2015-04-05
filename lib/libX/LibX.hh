@@ -13,7 +13,7 @@
 # include <Snake.hpp>
 # include <IGui.hpp>
 
-# define PIXELS_BY_CASE	(5)
+# define PIXELS_BY_CASE	(10)
 # define RED_RGB	("#FF0000")
 # define BLUE_RGB	("#0000FF")
 
@@ -21,8 +21,6 @@ class		LibX : public IGui
 {
 
 private:
-
-  // extern char**	environ;
 
   Display	*_display;
   Window	_window;

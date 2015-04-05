@@ -15,7 +15,7 @@ CXXFLAGS	+= 	-I interfaces
 CXXFLAGS	+= 	-Wl,--export-dynamic -rdynamic
 CXXFLAGS	+= 	-g
 
-LDXXFLAGS	+=	-ldl
+LDXXFLAGS	+=	-ldl -Wl,--export-dynamic -rdynamic
 
 RM		= 	rm -f
 
