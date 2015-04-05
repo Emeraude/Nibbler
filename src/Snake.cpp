@@ -79,7 +79,7 @@ int		Snake::move()
 
 void		Snake::moveLeft()
 {
-  _dir += !_dir ? 4 : -1;
+  _dir += !_dir ? 3 : -1;
 }
 
 void		Snake::moveRight()
