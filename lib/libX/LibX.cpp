@@ -14,8 +14,11 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
 // XSetErrorHandler((void*)0);
 
   if (!(_display = XOpenDisplay((char*)0))) {
-    // ERROR
+    throw LibXException("LibX is unable to be opened.");
   }
+  if (dim_x > 1200 || dim_y > 720 ||
+      dim_x <= 5 * PIXELS_BY_CASE || dim_x <= 5 * PIXELS_BY_CASE)
+    throw ResolutionException("Invalid Resolution.");
   _window = XCreateSimpleWindow(_display, RootWindow(_display, 0),
 				1, 1, dim_x, dim_y, 0,
 				WhitePixel(_display, 0),

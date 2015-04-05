@@ -21,7 +21,13 @@ private:
   Apple _apple;
   size_t _caseX;
   size_t _caseY;
-  
+  size_t _speed;
+
+  void	incSpeed();
+
+  void	menu();
+  void	game();
+
 public:
   Core(const size_t, const size_t, const std::string&);
   ~Core();
@@ -31,8 +37,6 @@ public:
   void	loadGui(const std::string &);
   void	launchGame();
 
-  void	menu();
-  void	game();
 };
 
 #endif

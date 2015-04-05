@@ -1,6 +1,7 @@
 NAME		= 	libX.so
 
 SRC		+=  	LibX.cpp
+SRC		+=  	LibXException.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
