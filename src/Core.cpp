@@ -16,6 +16,7 @@ Core::Core(const size_t casesX, const size_t casesY, const std::string &libPath)
 
 Core::~Core()
 {
+  delete _gui;
   dlclose(_symbol);
 }
 
@@ -72,7 +73,7 @@ void		Core::game()
     if (_snake.move())
       return ;
     if (_snake.getSnake().front() == _apple.getApple()) {
-      _apple.generateApple(_snake);      
+      _apple.generateApple(_snake);
       _snake.growth();
       incSpeed();
     }
