@@ -5,18 +5,18 @@
 # include <string>
 # include "IGuiException.hpp"
 
-class SDLException : public std::exception, public IGuiException
+class LibXException : public std::exception, public IGuiException
 {
 public:
-  SDLException(std::string str);
-  virtual ~SDLException() throw();
+  LibXException(std::string str);
+  virtual ~LibXException() throw();
   const char *what() const throw();
 
 protected:
   std::string _str;
 };
 
-class ResolutionException : public SDLException
+class ResolutionException : public LibXException
 {
 public:
   ResolutionException(std::string str);

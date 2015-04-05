@@ -13,6 +13,8 @@
 # include <Snake.hpp>
 # include <IGui.hpp>
 
+# include "LibXException.hpp"
+
 # define PIXELS_BY_CASE	(10)
 # define RED_RGB	("#FF0000")
 # define BLUE_RGB	("#0000FF")

@@ -10,3 +10,9 @@ const char *SDLException::what() const throw()
 {
   return _str.data();
 }
+
+ResolutionException::~ResolutionException() throw() {}
+ResolutionException::ResolutionException(std::string str) : SDLException(str)
+{
+  _str = std::string("ResolutionException : ") + str;
+}

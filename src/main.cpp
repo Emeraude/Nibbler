@@ -1,8 +1,9 @@
 #include "Core.hpp"
+#include "IGuiException.hpp"
 
 void		usage(const std::string& name)
 {
-  std::cout << "usage: " << name <<" __GUI_PATH__" << std::endl;
+  std::cout << "usage: " << name << "  HEIGHT_BLOC  WIDTH_BLOC  GUI_PATH" << std::endl;
 }
 
 int		main(int argc, char **argv)
@@ -18,6 +19,10 @@ int		main(int argc, char **argv)
       game.launchGame();
       }
       catch (NibblerException &e) {
+	std::cerr << e.what() << std::endl;
+	return (1);
+      }
+      catch (IGuiException &e) {
 	std::cerr << e.what() << std::endl;
 	return (1);
       }

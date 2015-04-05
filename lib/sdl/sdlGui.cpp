@@ -4,11 +4,17 @@
 
 sdlGui::sdlGui(std::pair<std::size_t, std::size_t> dim)
 {
-  std::cout << "first: "<<dim.first * BLOC << std::endl;
+
   _width = dim.first * BLOC;
   _height = dim.second * BLOC;
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
     throw SDLException("Initialisation failed.");
+  const SDL_VideoInfo* info = SDL_GetVideoInfo();
+  int tmpW = _width;
+  int tmpH = _height;
+  if (tmpW > info->current_w || tmpH > info->current_h
+      || tmpW <= 5 * BLOC || tmpH <= 5 * BLOC)
+    throw ResolutionException("Invalid resolution.");
   if (!(_win = SDL_SetVideoMode(_height, _width, 32, SDL_HWSURFACE | SDL_DOUBLEBUF)))
     throw SDLException("Video configuration is unable to be set.");
   if (!(_apple = SDL_CreateRGBSurface(SDL_HWSURFACE, BLOC, BLOC, 32, 0, 0, 0, 0)) ||

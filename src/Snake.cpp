@@ -9,6 +9,7 @@ Snake::Snake(size_t limitX, size_t limitY)
   _snake.push_back(std::pair<int, int>(10, 10));
   _snake.push_back(std::pair<int, int>(10, 11));
   _snake.push_back(std::pair<int, int>(10, 12));
+  _snake.push_back(std::pair<int, int>(10, 13));
 
   ptr[0] = &Snake::setDirRight;
   ptr[1] = &Snake::setDirDown;
@@ -107,7 +108,7 @@ void		Snake::moveRight()
 
 void		Snake::growth()
 {
-  _eated += 3;
+  _eated += 1;
 }
 
 const std::deque<std::pair<int, int> > Snake::getSnake() const

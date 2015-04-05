@@ -11,6 +11,7 @@ Core::Core(const size_t casesX, const size_t casesY, const std::string &libPath)
   _caseY = casesY;
   loadGui(libPath);
   _apple.generateApple(_snake);
+  _speed = 100000;
 }
 
 Core::~Core()
@@ -53,6 +54,11 @@ void		Core::menu()
   while (ret != 0)
     ret = _gui->launchMenu();
 }
+void		Core::incSpeed()
+{
+  if (_speed > 30000)
+    _speed -= 5000;
+}
 
 void		Core::game()
 {
@@ -66,7 +72,8 @@ void		Core::game()
     if (_snake.getSnake().front() == _apple.getApple()) {
       _apple.generateApple(_snake);      
       _snake.growth();
+      incSpeed();
     }
-    usleep(100000);
+    usleep(_speed);
   }
 }
