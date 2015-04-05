@@ -76,6 +76,7 @@ int		NCurseGui::eventManager(Snake& snake)
       return (0);
     if (c == 'p' || c == 'P')
       _paused ^= 1;
+    usleep(10);
   } while (_paused);
   return 1;
 }

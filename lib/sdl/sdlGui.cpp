@@ -88,6 +88,7 @@ int		sdlGui::eventManager(Snake& snake)
 	    snake.moveRight();
 	}
     }
+    SDL_Delay(1);
   } while (_paused);
   return 1;
 }

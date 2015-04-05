@@ -120,6 +120,7 @@ int	LibX::eventManager(Snake &snake)
 	return (0);
 	break;
       }
+      usleep(10);
     } while (_paused);
   }
   return (1);
