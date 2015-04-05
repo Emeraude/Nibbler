@@ -59,7 +59,7 @@ void		Core::game()
 
   while (ret != 0 && ret != -1) {
     ret = _gui->eventManager(_snake);
-    _gui->printGame(_snake);
+    _gui->printGame(_snake, _apple);
     if (_snake.move())
       return ;
     if (_snake.getSnake().front() == _apple.getApple())
