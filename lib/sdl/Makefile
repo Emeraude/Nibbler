@@ -1,15 +1,17 @@
-NAME		= 	../../sdl.so
+NAME		= 	sdl.so
 
 DIR		=	src
 
 SRC		+=  	sdlGui.cpp
+SRC		+=  	SDLExceptions.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
 CXXFLAGS	+=	-fPIC
 CXXFLAGS	+= 	-W -Wall -Wextra
-CXXFLAGS	+= 	-I ../../includes
 CXXFLAGS	+= 	-I ../../interfaces
+CXXFLAGS	+= 	-I .
+CXXFLAGS	+= 	-I ../../includes
 
 LDXXFLAGS	+=	-lSDL
 LDXXFLAGS	+=	-shared
