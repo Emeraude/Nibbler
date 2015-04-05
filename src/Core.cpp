@@ -47,7 +47,7 @@ void		Core::menu()
     ret = _gui->launchMenu();
 }
 
-int		Core::game()
+void		Core::game()
 {
   int		ret = 1;
 
@@ -57,5 +57,4 @@ int		Core::game()
     _snake.move();
     usleep(100000);
   }
-  return (ret);
 }

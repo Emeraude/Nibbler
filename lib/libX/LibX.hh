@@ -16,6 +16,7 @@
 # define PIXELS_BY_CASE	(10)
 # define RED_RGB	("#FF0000")
 # define BLUE_RGB	("#0000FF")
+# define WHITE_RGB	("#FFFFFF")
 
 class		LibX : public IGui
 {
@@ -29,11 +30,14 @@ private:
   XEvent	_event;
   GC		_redContext;
   GC		_blueContext;
+  GC		_whiteContext;
   XColor	_redParsed;
   XColor	_blueParsed;
+  XColor	_whiteParsed;
   Colormap	_colorMap;
 
   void		printSquare(int, int, GC);
+  void		clearScreen();
 
 public:
 

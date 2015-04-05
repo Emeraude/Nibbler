@@ -74,12 +74,12 @@ int		Snake::move()
 
 void		Snake::moveLeft()
 {
-  ++_dir %= 4;
+  _dir += !_dir ? 4 : -1;
 }
 
 void		Snake::moveRight()
 {
-  _dir += !_dir ? 4 : -1;
+  ++_dir %= 4;
 }
 
 std::deque<std::pair<int, int> > Snake::getSnake() const

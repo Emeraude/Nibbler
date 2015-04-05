@@ -9,6 +9,7 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
   size_t	dim_y = dimension.second * PIXELS_BY_CASE;
   char		red[] = RED_RGB;
   char		blue[] = BLUE_RGB;
+  char		white[] = WHITE_RGB;
 
 // XSetErrorHandler((void*)0);
 
@@ -25,12 +26,16 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
 
   _redContext = XCreateGC(_display, _window, 0, 0);
   _blueContext = XCreateGC(_display, _window, 0, 0);
+  _whiteContext = XCreateGC(_display, _window, 0, 0);
   XParseColor(_display, _colorMap, red, &_redParsed);
   XParseColor(_display, _colorMap, blue, &_blueParsed);
+  XParseColor(_display, _colorMap, white, &_whiteParsed);
   XAllocColor(_display, _colorMap, &_redParsed);
   XAllocColor(_display, _colorMap, &_blueParsed);
+  XAllocColor(_display, _colorMap, &_whiteParsed);
   XSetForeground(_display, _redContext, _redParsed.pixel);
   XSetForeground(_display, _blueContext, _blueParsed.pixel);
+  XSetForeground(_display, _whiteContext, _whiteParsed.pixel);
 
   XSelectInput(_display, _window, ExposureMask | KeyPressMask);
 
@@ -63,20 +68,30 @@ void	LibX::printSquare(int x, int y, GC colorContext)
   }
 }
 
+void	LibX::clearScreen()
+{
+  for (size_t y = 0; y < _sizeY * PIXELS_BY_CASE; ++y) {
+    XDrawLine(_display, _window, _whiteContext, 0, y, _sizeX * PIXELS_BY_CASE, y);
+  }
+}
+
 int	LibX::printGame(const Snake &snake)
 {
   std::deque<std::pair<int, int> > s = snake.getSnake();
   std::deque<std::pair<int, int> >::iterator it = s.begin();
 
+  clearScreen();
+
   if (it != s.end()) {
+    std::cout << "X: " << it->first << " Y: " << it->second << std::endl;
     printSquare(it->first, it->second, _blueContext);
     ++it;
   }
 
-  while (it != s.end()) {
-    printSquare(it->first, it->second, _redContext);
-    ++it;
-  }
+  // while (it != s.end()) {
+  //   printSquare(it->first, it->second, _redContext);
+  //   ++it;
+  // }
 
   XFlush(_display);
   return (0);
@@ -96,7 +111,6 @@ int	LibX::eventManager(Snake &snake)
       snake.moveRight();
       break;
     case (XK_space):
-      sleep(10);
       break;
     case (XK_Escape):
       return (0);
