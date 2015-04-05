@@ -2,6 +2,7 @@ nibbler
 *.a
 *.tgz
 *.o
+*.so
 \#*\#
 .\#*
 *.sw[po]
