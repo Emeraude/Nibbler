@@ -10,6 +10,7 @@
 class sdlGui : public IGui
 {
 private:
+  bool	_paused;
   size_t _width;
   size_t _height;
 
@@ -23,7 +24,7 @@ private:
 public:
   sdlGui(std::pair<std::size_t, std::size_t>);
   ~sdlGui();
-  
+
   int launchMenu();
   int printGame(const Snake &, const Apple &);
   int eventManager(Snake &);

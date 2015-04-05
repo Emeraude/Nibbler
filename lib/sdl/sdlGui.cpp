@@ -4,7 +4,7 @@
 
 sdlGui::sdlGui(std::pair<std::size_t, std::size_t> dim)
 {
-
+  _paused = false;
   _width = dim.first * BLOC;
   _height = dim.second * BLOC;
   if (SDL_Init(SDL_INIT_VIDEO) == -1)
@@ -71,19 +71,25 @@ int		sdlGui::eventManager(Snake& snake)
 {
   SDL_Event event;
 
-  while (SDL_PollEvent(&event)) {
-    if (event.type == SDL_QUIT)
-      return (0);
-    if (event.type == SDL_KEYDOWN)
-      {
-	if (event.key.keysym.sym == SDLK_ESCAPE)
-	  return (0);
-	if (event.key.keysym.sym == SDLK_LEFT)
-	  snake.moveLeft();
-	if (event.key.keysym.sym == SDLK_RIGHT)
-	  snake.moveRight();
-      }
-  }
+  do {
+    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT)
+	return (0);
+      if (event.type == SDL_KEYDOWN)
+	{
+	  if (event.key.keysym.sym == SDLK_ESCAPE
+	      || event.key.keysym.sym == SDLK_q)
+	    return (0);
+	  if (event.key.keysym.sym == SDLK_p)
+	    _paused ^= 1;
+	  if (event.key.keysym.sym == SDLK_LEFT)
+	    snake.moveLeft();
+	  if (event.key.keysym.sym == SDLK_RIGHT)
+	    snake.moveRight();
+	}
+    }
+    SDL_Delay(1);
+  } while (_paused);
   return 1;
 }
 

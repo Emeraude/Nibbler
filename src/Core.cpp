@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include <sstream>
 #include "Core.hpp"
-#include "option.h"
 
 Core::Core(const size_t casesX, const size_t casesY, const std::string &libPath) :
   _snake(casesX, casesY), _apple(_snake)
@@ -52,11 +51,9 @@ void		Core::launchGame()
 
 void		Core::menu()
 {
-  int ret = 1;
-
-  while (ret != 0)
-    ret = _gui->launchMenu();
+  while (_gui->launchMenu());
 }
+
 void		Core::incSpeed()
 {
   if (_speed > 30000)
@@ -65,16 +62,15 @@ void		Core::incSpeed()
 
 void		Core::game()
 {
-  int		ret = 1;
-
-  while (ret != 0) {
-    ret = _gui->eventManager(_snake);
+  while (1) {
+    if (!_gui->eventManager(_snake))
+      return;
     _gui->printGame(_snake, _apple);
     if (_snake.move())
       return ;
     if (_snake.getSnake().front() == _apple.getApple()) {
       _apple.generateApple(_snake);
-      _snake.growth();
+      _snake.growth(_speed);
       incSpeed();
     }
     usleep(_speed);

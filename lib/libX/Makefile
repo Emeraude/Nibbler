@@ -16,7 +16,7 @@ LDXXFLAGS	+=	-shared
 
 RM		= 	rm -f
 
-CC		= 	clang++
+CC		= 	g++
 
 %.o: %.cpp
 		@$(CC) -c -o $@ $<  $(CXXFLAGS)

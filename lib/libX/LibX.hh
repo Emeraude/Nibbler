@@ -26,6 +26,7 @@ class		LibX : public IGui
 
 private:
 
+  bool		_paused;
   Display	*_display;
   Window	_window;
   size_t	_sizeX;

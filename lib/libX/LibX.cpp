@@ -43,13 +43,12 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
 
   XSelectInput(_display, _window, ExposureMask | KeyPressMask);
 
+  _paused = false;
   XFlush(_display);
 }
 
 LibX::~LibX()
 {
-  (void)_sizeX;
-  (void)_sizeY;
   XUnmapWindow(_display, _window);
   XCloseDisplay(_display);
 }
@@ -102,20 +101,27 @@ int	LibX::printGame(const Snake &snake, const Apple & apple)
 int	LibX::eventManager(Snake &snake)
 {
   if (XCheckMaskEvent(_display, KeyPressMask, &_event)) {
-    KeySym key = XLookupKeysym(&_event.xkey, 0);
-    switch (key) {
-    case (XK_Left):
-      snake.moveLeft();
-      break;
-    case (XK_Right):
-      snake.moveRight();
-      break;
-    case (XK_space):
-      break;
-    case (XK_Escape):
-      return (0);
-      break;
-    }
+    do {
+      KeySym key = XLookupKeysym(&_event.xkey, 0);
+      switch (key) {
+      case (XK_Left):
+	snake.moveLeft();
+	break;
+      case (XK_Right):
+	snake.moveRight();
+	break;
+      case (XK_Escape):
+	return (0);
+	break;
+      case (XK_p):
+	_paused ^= 1;
+	break;
+      case (XK_q):
+	return (0);
+	break;
+      }
+      usleep(10);
+    } while (_paused);
   }
   return (1);
 }
