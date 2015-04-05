@@ -95,10 +95,6 @@ int		sdlGui::eventManager(Snake& snake)
 
 int		sdlGui::guiQuit()
 {
-  SDL_FreeSurface(_win);
-  SDL_FreeSurface(_apple);
-  SDL_FreeSurface(_body);
-  SDL_FreeSurface(_head);
   return 0;
 }
 
