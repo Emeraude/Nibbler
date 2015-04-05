@@ -19,7 +19,7 @@ NCurseGui::NCurseGui(std::pair<std::size_t, std::size_t> dim)
   refresh();
   _win = newwin(_height + 2, _width + 2, 0, 0);
   box(_win, 0, 0);
-  wborder(_win, '|', '|', '-', '-', '+', 'o', 'o', '+');
+  wborder(_win, '|', '|', '_', '_', ' ', ' ', '|', '|');
 }
 
 NCurseGui::~NCurseGui()
