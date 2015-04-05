@@ -1,4 +1,4 @@
-NAME		= 	sdl.so
+NAME		= 	lib_nibbler_sdl.so
 
 DIR		=	src
 

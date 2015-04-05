@@ -1,4 +1,4 @@
-NAME		= 	ncurse.so
+NAME		= 	lib_nibbler_ncurse.so
 
 DIR		=	src
 

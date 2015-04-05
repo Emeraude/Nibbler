@@ -1,4 +1,4 @@
-NAME		= 	libX.so
+NAME		= 	lib_nibbler_libx.so
 
 SRC		+=  	LibX.cpp
 SRC		+=  	LibXException.cpp
