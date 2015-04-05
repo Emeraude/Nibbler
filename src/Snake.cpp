@@ -1,4 +1,5 @@
 #include "Snake.hpp"
+#include "option.h"
 
 Snake::Snake()
 {
@@ -52,12 +53,23 @@ std::pair<int, int>		Snake::setDirTop()
   return std::pair<int, int>(_snake.back().first, _snake.back().second - 1);
 }
 
-void		Snake::move()
+bool				Snake::checkBorder() const
+{
+  if (_snake.back().first < 0
+      || _snake.back().first * BLOC_SIZE > WIDTH
+      || _snake.back().second < 0
+      || _snake.back().second * BLOC_SIZE > HEIGHT)
+    return (false);
+  return true;
+}
+
+int		Snake::move()
 {
   _snake.pop_back();
   _snake.push_front(std::pair<int, int>((this->*ptr[_dir])()));
-  // _snake.pop_front();
-  // _snake.push_back(std::pair<int, int>((this->*ptr[_dir])()));
+  if (!checkBorder())
+    return (1);
+  return (0);
 }
 
 void		Snake::moveLeft()

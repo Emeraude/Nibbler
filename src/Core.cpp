@@ -1,4 +1,5 @@
 #include <dlfcn.h>
+#include <unistd.h>
 #include "Core.hpp"
 
 Core::Core(const std::string &libPath)
@@ -38,16 +39,13 @@ void		Core::launchGame()
   game();
 }
 
-int		Core::menu()
+void		Core::menu()
 {
-  int		ret = 1;
+  int ret = 1;
 
   while (ret != 0)
     ret = _gui->launchMenu();
-  return ret;
 }
-
-#include <unistd.h>
 
 int		Core::game()
 {
