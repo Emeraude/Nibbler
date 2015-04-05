@@ -19,16 +19,10 @@ Core::~Core()
   dlclose(_symbol);
 }
 
-// Core::Core(const Core &rhs __attribute__((unused))) :
-//   _snake(), _apple(_snake)
-// {
-// }
-
 Core&		Core::operator=(const Core &rhs __attribute__((unused)))
 {
-  if (this != &rhs)
-    {
-    }
+  if (this != &rhs) {
+  }
   return *this;
 }
 

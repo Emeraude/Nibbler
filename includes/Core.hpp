@@ -29,11 +29,12 @@ private:
   void	game();
   void	loadGui(const std::string &);
 
+  Core(const Core &);
+  Core& operator=(const Core &);
+
 public:
   Core(const size_t, const size_t, const std::string&);
   ~Core();
-  Core(const Core &);
-  Core& operator=(const Core &);
 
   void	launchGame();
 
