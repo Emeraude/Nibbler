@@ -13,11 +13,12 @@ private:
   size_t _rotten_age;
   size_t _age;
 
+  Apple(const Apple&);
+  Apple& operator=(const Apple&);
+
 public:
   Apple(const Snake &);
   ~Apple();
-  // Apple(const Apple&);
-  // Apple& operator=(const Apple&);
 
   std::pair<int, int> generateTemporaryApple();
   bool generateApple(const Snake& snake);

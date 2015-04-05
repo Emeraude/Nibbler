@@ -14,17 +14,6 @@ Apple::~Apple()
 {
 }
 
-// Apple::Apple(const Apple& rhs __attribute__((unused)))
-// {
-// }
-
-// Apple&		Apple::operator=(const Apple & rhs)
-// {
-//   if (this != &rhs) {
-//   }
-//   return *this;
-// }
-
 std::pair<int, int> Apple::generateTemporaryApple()
 {
   return (std::make_pair(rand() % _snake.getLimitX(), rand() % _snake.getLimitY()));
