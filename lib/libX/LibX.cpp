@@ -88,10 +88,10 @@ int	LibX::printGame(const Snake &snake)
     ++it;
   }
 
-  // while (it != s.end()) {
-  //   printSquare(it->first, it->second, _redContext);
-  //   ++it;
-  // }
+  while (it != s.end()) {
+    printSquare(it->first, it->second, _redContext);
+    ++it;
+  }
 
   XFlush(_display);
   return (0);
