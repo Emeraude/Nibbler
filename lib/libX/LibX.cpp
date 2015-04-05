@@ -68,19 +68,15 @@ void	LibX::printSquare(int x, int y, GC colorContext)
   }
 }
 
-void	LibX::clearScreen()
-{
-  for (size_t y = 0; y < _sizeY * PIXELS_BY_CASE; ++y) {
-    XDrawLine(_display, _window, _whiteContext, 0, y, _sizeX * PIXELS_BY_CASE, y);
-  }
-}
-
 int	LibX::printGame(const Snake &snake)
 {
   std::deque<std::pair<int, int> > s = snake.getSnake();
   std::deque<std::pair<int, int> >::iterator it = s.begin();
 
-  clearScreen();
+  std::pair<int, int>	last_chain = snake.getLastChain();
+  if (last_chain.first >= 0) {
+    printSquare(last_chain.first, last_chain.second, _whiteContext);
+  }
 
   if (it != s.end()) {
     std::cout << "X: " << it->first << " Y: " << it->second << std::endl;

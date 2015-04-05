@@ -13,6 +13,7 @@ Snake::Snake()
   ptr[3] = &Snake::setDirTop;
 
   _dir = 0;
+  _lastChain = std::make_pair(-1, -1);
 }
 
 Snake::~Snake()
@@ -67,6 +68,7 @@ bool				Snake::checkBorder() const
 
 int		Snake::move()
 {
+  _lastChain = _snake.back();
   _snake.pop_back();
   _dir %= 4;
   _snake.push_front(std::pair<int, int>((this->*ptr[_dir])()));
@@ -88,4 +90,9 @@ void		Snake::moveRight()
 std::deque<std::pair<int, int> > Snake::getSnake() const
 {
   return (_snake);
+}
+
+std::pair<int, int>	Snake::getLastChain() const
+{
+  return (_lastChain);
 }

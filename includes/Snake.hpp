@@ -10,6 +10,7 @@ private:
   std::deque<std::pair<int, int> >	_snake;
   int _dir;
   std::pair<int, int> (Snake::*ptr[4])();
+  std::pair<int, int>	_lastChain;
 
   std::pair<int, int> setDirRight();
   std::pair<int, int> setDirDown();
@@ -28,6 +29,7 @@ public:
   void		moveLeft();
   void		moveRight();
   std::deque<std::pair<int, int> > getSnake() const;
+  std::pair<int, int>	getLastChain() const;
 };
 
 #endif

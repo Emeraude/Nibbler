@@ -37,7 +37,6 @@ private:
   Colormap	_colorMap;
 
   void		printSquare(int, int, GC);
-  void		clearScreen();
 
 public:
 
