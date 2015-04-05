@@ -3,6 +3,7 @@
 
 # include <utility>
 # include "Snake.hpp"
+# include "Apple.hpp"
 
 class IGui
 {
@@ -13,7 +14,7 @@ public:
   virtual int launchMenu() = 0;
 
   /* launchGame return 0 for success and -1 for failure */
-  virtual int printGame(const Snake &) = 0;
+  virtual int printGame(const Snake &, const Apple &) = 0;
   virtual int eventManager(Snake &) = 0;
 
   /* guiQuit return 0 for success and -1 for failure */
