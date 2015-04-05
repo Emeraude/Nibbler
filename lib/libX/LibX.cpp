@@ -68,7 +68,7 @@ void	LibX::printSquare(int x, int y, GC colorContext)
   }
 }
 
-int	LibX::printGame(const Snake &snake)
+int	LibX::printGame(const Snake &snake, const Apple & apple)
 {
   std::deque<std::pair<int, int> > s = snake.getSnake();
   std::deque<std::pair<int, int> >::iterator it = s.begin();

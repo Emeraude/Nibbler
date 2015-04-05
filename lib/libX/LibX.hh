@@ -44,7 +44,7 @@ public:
   virtual ~LibX();
 
   virtual int	launchMenu();
-  virtual int	printGame(const Snake &);
+  virtual int	printGame(const Snake &, const Apple &);
   virtual int	eventManager(Snake &);
   virtual int	guiQuit();
 };
