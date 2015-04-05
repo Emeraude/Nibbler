@@ -31,8 +31,3 @@ void			*DynamicLoader::loadGui(const std::string &path)
     throw DynamicLoaderException("loadGui");
   return handle;
 }
-
-IGui *		DynamicLoader::getGui() const
-{
-  return _gui;
-}
