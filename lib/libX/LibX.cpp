@@ -10,6 +10,7 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
   char		red[] = RED_RGB;
   char		blue[] = BLUE_RGB;
   char		white[] = WHITE_RGB;
+  char		green[] = GREEN_RGB;
 
 // XSetErrorHandler((void*)0);
 
@@ -30,12 +31,16 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
   _redContext = XCreateGC(_display, _window, 0, 0);
   _blueContext = XCreateGC(_display, _window, 0, 0);
   _whiteContext = XCreateGC(_display, _window, 0, 0);
+  _greenContext = XCreateGC(_display, _window, 0, 0);
   XParseColor(_display, _colorMap, red, &_redParsed);
   XParseColor(_display, _colorMap, blue, &_blueParsed);
   XParseColor(_display, _colorMap, white, &_whiteParsed);
+  XParseColor(_display, _colorMap, green, &_greenParsed);
+  XAllocColor(_display, _colorMap, &_greenParsed);
   XAllocColor(_display, _colorMap, &_redParsed);
   XAllocColor(_display, _colorMap, &_blueParsed);
   XAllocColor(_display, _colorMap, &_whiteParsed);
+  XSetForeground(_display, _greenContext, _greenParsed.pixel);
   XSetForeground(_display, _redContext, _redParsed.pixel);
   XSetForeground(_display, _blueContext, _blueParsed.pixel);
   XSetForeground(_display, _whiteContext, _whiteParsed.pixel);
@@ -77,7 +82,7 @@ int	LibX::printGame(const Snake &snake, const Apple & apple)
   std::deque<std::pair<int, int> >::iterator it = s.begin();
 
   std::pair<int, int> food = apple.getApple();
-  printSquare(food.first, food.second, _blueContext);
+  printSquare(food.first, food.second, _greenContext);
 
   std::pair<int, int>	last_chain = snake.getLastChain();
   if (last_chain.first >= 0) {

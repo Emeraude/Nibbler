@@ -19,6 +19,7 @@
 # define RED_RGB	("#FF0000")
 # define BLUE_RGB	("#0000FF")
 # define WHITE_RGB	("#FFFFFF")
+# define GREEN_RGB	("#01DF01")
 
 class		LibX : public IGui
 {
@@ -33,9 +34,11 @@ private:
   GC		_redContext;
   GC		_blueContext;
   GC		_whiteContext;
+  GC		_greenContext;
   XColor	_redParsed;
   XColor	_blueParsed;
   XColor	_whiteParsed;
+  XColor	_greenParsed;
   Colormap	_colorMap;
 
   void		printSquare(int, int, GC);
