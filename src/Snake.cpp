@@ -87,7 +87,7 @@ void		Snake::moveRight()
   ++_dir %= 4;
 }
 
-std::deque<std::pair<int, int> > Snake::getSnake() const
+const std::deque<std::pair<int, int> > Snake::getSnake() const
 {
   return (_snake);
 }
