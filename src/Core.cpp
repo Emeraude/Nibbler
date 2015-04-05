@@ -63,7 +63,7 @@ void		Core::game()
     if (_snake.move())
       return ;
     if (_snake.getSnake().front() == _apple.getApple()) {
-      _snake.growth(_speed, _apple.getAge() <= _apple.getBonusAge() ? 2 : 1);
+      _snake.growth(_speed, _apple.getScoreCoef());
       _apple.generateApple(_snake);
       incSpeed();
     }

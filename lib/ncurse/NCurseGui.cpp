@@ -19,6 +19,7 @@ NCurseGui::NCurseGui(std::pair<std::size_t, std::size_t> dim)
   init_pair(2, COLOR_BLACK, COLOR_RED);
   init_pair(3, COLOR_BLACK, COLOR_BLUE);
   init_pair(4, COLOR_BLACK, COLOR_CYAN);
+  init_pair(5, COLOR_BLACK, COLOR_YELLOW);
   raw();
   noecho();
   cbreak();
@@ -43,7 +44,14 @@ int		NCurseGui::printGame(const Snake& snake, const Apple & apple)
 {
   std::deque<std::pair<int, int> > s = snake.getSnake();
   std::deque<std::pair<int, int> >::const_iterator it = s.begin();
+  int apple_color;
 
+  if (apple.getAge() <= apple.getBonusAge())
+    apple_color = 4;
+  else if (apple.getAge() > apple.getRottenAge())
+    apple_color = 5;
+  else
+    apple_color = 1;
   wborder(_win, '|', '|', '_', '_', ' ', ' ', '|', '|');
   wattron(_win, COLOR_PAIR(3));
   mvwprintw(_win, it->first + 1, it->second * 2 + 1, "  ");
@@ -53,9 +61,9 @@ int		NCurseGui::printGame(const Snake& snake, const Apple & apple)
     mvwprintw(_win, it->first + 1, it->second * 2 + 1, "  ");
     wattroff(_win, COLOR_PAIR(2));
   }
-  wattron(_win, COLOR_PAIR(apple.getAge() > apple.getBonusAge() ? 1 : 4));
+  wattron(_win, COLOR_PAIR(apple_color));
   mvwprintw(_win, apple.getApple().first + 1, apple.getApple().second * 2 + 1, "  ");
-  wattroff(_win, COLOR_PAIR(apple.getAge() > apple.getBonusAge() ? 1 : 4));
+  wattroff(_win, COLOR_PAIR(apple_color));
   std::pair<size_t, size_t>   lastLink = snake.getLastChain();
   mvwprintw(_win, lastLink.first + 1, lastLink.second * 2 + 1, lastLink.first + 1 == _height ? "__" : "  ");
   wrefresh(_win);

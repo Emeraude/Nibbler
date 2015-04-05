@@ -19,7 +19,7 @@ private:
   std::pair<int, int> setDirLeft();
   std::pair<int, int> setDirTop();
 
-  std::size_t	_score;
+  int	_score;
   int	_limitX, _limitY;
 
   bool		checkBorder() const;

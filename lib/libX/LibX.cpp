@@ -5,6 +5,7 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
 {
   size_t	dim_x = dimension.first * PIXELS_BY_CASE;
   size_t	dim_y = dimension.second * PIXELS_BY_CASE;
+  char		yellow[] = YELLOW_RGB;
   char		cyan[] = CYAN_RGB;
   char		red[] = RED_RGB;
   char		blue[] = BLUE_RGB;
@@ -25,21 +26,25 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
 
   _colorMap = DefaultColormap(_display, 0);
 
+  _yellowContext = XCreateGC(_display, _window, 0, 0);
   _cyanContext = XCreateGC(_display, _window, 0, 0);
   _redContext = XCreateGC(_display, _window, 0, 0);
   _blueContext = XCreateGC(_display, _window, 0, 0);
   _whiteContext = XCreateGC(_display, _window, 0, 0);
   _greenContext = XCreateGC(_display, _window, 0, 0);
   XParseColor(_display, _colorMap, cyan, &_cyanParsed);
+  XParseColor(_display, _colorMap, yellow, &_yellowParsed);
   XParseColor(_display, _colorMap, red, &_redParsed);
   XParseColor(_display, _colorMap, blue, &_blueParsed);
   XParseColor(_display, _colorMap, white, &_whiteParsed);
   XParseColor(_display, _colorMap, green, &_greenParsed);
+  XAllocColor(_display, _colorMap, &_yellowParsed);
   XAllocColor(_display, _colorMap, &_cyanParsed);
   XAllocColor(_display, _colorMap, &_greenParsed);
   XAllocColor(_display, _colorMap, &_redParsed);
   XAllocColor(_display, _colorMap, &_blueParsed);
   XAllocColor(_display, _colorMap, &_whiteParsed);
+  XSetForeground(_display, _yellowContext, _yellowParsed.pixel);
   XSetForeground(_display, _cyanContext, _cyanParsed.pixel);
   XSetForeground(_display, _greenContext, _greenParsed.pixel);
   XSetForeground(_display, _redContext, _redParsed.pixel);
@@ -80,9 +85,16 @@ int	LibX::printGame(const Snake &snake, const Apple & apple)
 {
   std::deque<std::pair<int, int> > s = snake.getSnake();
   std::deque<std::pair<int, int> >::iterator it = s.begin();
+  GC	apple_color;
 
   std::pair<int, int> food = apple.getApple();
-  printSquare(food.first, food.second, apple.getAge() > apple.getBonusAge() ? _greenContext : _cyanContext);
+  if (apple.getAge() <= apple.getBonusAge())
+    apple_color = _cyanContext;
+  else if (apple.getAge() > apple.getRottenAge())
+    apple_color = _yellowContext;
+  else
+    apple_color = _greenContext;
+  printSquare(food.first, food.second, apple_color);
 
   std::pair<int, int>	last_chain = snake.getLastChain();
   if (last_chain.first >= 0) {

@@ -10,6 +10,7 @@ private:
   std::pair<int, int> _apple;
   Snake const&	_snake;
   size_t _bonus_age;
+  size_t _rotten_age;
   size_t _age;
 
 public:
@@ -24,7 +25,9 @@ public:
 
   void addAge(size_t age);
   size_t getAge(void) const;
+  size_t getRottenAge(void) const;
   size_t getBonusAge(void) const;
+  int getScoreCoef(void) const;
 };
 
 #endif

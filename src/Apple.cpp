@@ -6,6 +6,7 @@ Apple::Apple(const Snake& snake) :
 {
   _age = 0;
   _bonus_age = 2000000;
+  _rotten_age = 8000000;
   srand(time(NULL));
 }
 
@@ -63,6 +64,19 @@ size_t Apple::getAge(void) const {
   return _age;
 }
 
+size_t Apple::getRottenAge(void) const {
+  return _rotten_age;
+}
+
 size_t Apple::getBonusAge(void) const {
   return _bonus_age;
+}
+
+int Apple::getScoreCoef(void) const {
+  if (_age <= _bonus_age)
+    return 2;
+  else if (_age > _rotten_age)
+    return -1;
+  else
+    return 1;
 }

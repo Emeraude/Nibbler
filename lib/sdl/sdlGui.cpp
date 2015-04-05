@@ -19,12 +19,14 @@ sdlGui::sdlGui(std::pair<std::size_t, std::size_t> dim)
     throw SDLException("Video configuration is unable to be set.");
   if (!(_apple = SDL_CreateRGBSurface(SDL_HWSURFACE, BLOC, BLOC, 32, 0, 0, 0, 0)) ||
       !(_new_apple = SDL_CreateRGBSurface(SDL_HWSURFACE, BLOC, BLOC, 32, 0, 0, 0, 0)) ||
+      !(_rotten_apple = SDL_CreateRGBSurface(SDL_HWSURFACE, BLOC, BLOC, 32, 0, 0, 0, 0)) ||
       !(_head = SDL_CreateRGBSurface(SDL_HWSURFACE, BLOC, BLOC, 32, 0, 0, 0, 0)) ||
       !(_body = SDL_CreateRGBSurface(SDL_HWSURFACE, BLOC, BLOC, 32, 0, 0, 0, 0)))
     throw SDLException("Texture is unable to be generated.");
   SDL_FillRect(_win, NULL, SDL_MapRGB(_win->format, 255, 255, 255));
   SDL_FillRect(_apple, NULL, SDL_MapRGB(_win->format, 0, 255, 0));
   SDL_FillRect(_new_apple, NULL, SDL_MapRGB(_win->format, 0, 255, 255));
+  SDL_FillRect(_rotten_apple, NULL, 0xbb6611);
   SDL_FillRect(_head, NULL, SDL_MapRGB(_win->format, 0, 0, 255));
   SDL_FillRect(_body, NULL, SDL_MapRGB(_win->format, 255, 0, 0));
   SDL_WM_SetCaption("Nibbler SDL", NULL);
@@ -37,6 +39,7 @@ sdlGui::~sdlGui()
 {
   SDL_FreeSurface(_apple);
   SDL_FreeSurface(_new_apple);
+  SDL_FreeSurface(_rotten_apple);
   SDL_FreeSurface(_body);
   SDL_FreeSurface(_head);
   SDL_FreeSurface(_win);
@@ -51,6 +54,7 @@ int		sdlGui::printGame(const Snake& snake, const Apple & apple)
 {
   std::deque<std::pair<int, int> > s = snake.getSnake();;
   std::deque<std::pair<int, int> >::const_iterator it = s.begin();
+  SDL_Surface *apple_color;
 
   _sqr.x = 00;
   _sqr.y = 00;
@@ -65,7 +69,13 @@ int		sdlGui::printGame(const Snake& snake, const Apple & apple)
   }
   _sqr.x = apple.getApple().first * BLOC;
   _sqr.y = apple.getApple().second * BLOC;
-  SDL_BlitSurface(apple.getAge() > apple.getBonusAge() ? _apple : _new_apple, NULL, _win, &_sqr);
+  if (apple.getAge() <= apple.getBonusAge())
+    apple_color = _new_apple;
+  else if (apple.getAge() > apple.getRottenAge())
+    apple_color = _rotten_apple;
+  else
+    apple_color = _apple;
+  SDL_BlitSurface(apple_color, NULL, _win, &_sqr);
   SDL_Flip(_win);
   return 0;
 }
