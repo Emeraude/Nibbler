@@ -3,6 +3,7 @@
 
 # include <string>
 # include "IGui.hpp"
+# include "Exceptions.hpp"
 
 class DynamicLoader
 {

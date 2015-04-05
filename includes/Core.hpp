@@ -15,12 +15,13 @@ class Core
 {
 private:
   DynamicLoader	*_dynLoader;
+  void *_symbol;
   IGui *_gui;;
   Snake	_snake;
   Apple _apple;
   size_t _caseX;
   size_t _caseY;
-
+  
 public:
   Core(const size_t, const size_t, const std::string&);
   ~Core();

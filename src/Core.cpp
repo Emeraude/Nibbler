@@ -34,9 +34,9 @@ Core&		Core::operator=(const Core &rhs __attribute__((unused)))
 void		Core::loadGui(const std::string & path)
 {
   IGui *(*display)(std::pair<std::size_t, std::size_t>);
-  void *symbol = _dynLoader->loadGui(path);
+  _symbol = _dynLoader->loadGui(path);
 
-  display = reinterpret_cast<IGui *(*)(std::pair<size_t, size_t>)>(dlsym(symbol, "loadGui"));
+  display = reinterpret_cast<IGui *(*)(std::pair<size_t, size_t>)>(dlsym(_symbol, "loadGui"));
   _gui = (display)(std::pair<std::size_t, std::size_t>(_caseX, _caseY));
 }
 

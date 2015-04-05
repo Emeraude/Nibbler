@@ -7,6 +7,7 @@ SRC		+=  	$(DIR)/Snake.cpp
 SRC		+=  	$(DIR)/Apple.cpp
 SRC		+=  	$(DIR)/Core.cpp
 SRC		+=  	$(DIR)/DynamicLoader.cpp
+SRC		+=  	$(DIR)/Exceptions.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
