@@ -17,9 +17,8 @@ NCurseGui::NCurseGui(std::pair<std::size_t, std::size_t> dim)
   curs_set(0);
   keypad(stdscr, TRUE);
   refresh();
-  _win = newwin(_height + 2, _width + 2, 0, 0);
+  _win = newwin(_height + 1, _width + 2, 0, 0);
   box(_win, 0, 0);
-  wborder(_win, '|', '|', '_', '_', ' ', ' ', '|', '|');
 }
 
 NCurseGui::~NCurseGui()
@@ -38,29 +37,25 @@ int		NCurseGui::launchMenu()
   return 0;
 }
 
-
 int		NCurseGui::printGame(const Snake& snake, const Apple & apple)
 {
   std::deque<std::pair<int, int> > s = snake.getSnake();
   std::deque<std::pair<int, int> >::const_iterator it = s.begin();
 
+  wborder(_win, '|', '|', '_', '_', ' ', ' ', '|', '|');
   wattron(_win, COLOR_PAIR(3));
-  mvwprintw(_win, it->first + 1, it->second * 2 + 1, " ");
-  mvwprintw(_win, it->first + 1, it->second * 2 + 2, " ");
+  mvwprintw(_win, it->first + 1, it->second * 2 + 1, "  ");
   wattroff(_win, COLOR_PAIR(3));
   while (++it != s.end()) {
     wattron(_win, COLOR_PAIR(2));
-    mvwprintw(_win, it->first + 1, it->second * 2 + 1, " ");
-    mvwprintw(_win, it->first + 1, it->second * 2 + 2, " ");
+    mvwprintw(_win, it->first + 1, it->second * 2 + 1, "  ");
     wattroff(_win, COLOR_PAIR(2));
   }
   wattron(_win, COLOR_PAIR(1));
-  mvwprintw(_win, apple.getApple().first + 1, apple.getApple().second * 2 + 1, "0");
-  mvwprintw(_win, apple.getApple().first + 1, apple.getApple().second * 2 + 2, "0");
+  mvwprintw(_win, apple.getApple().first + 1, apple.getApple().second * 2 + 1, "00");
   wattroff(_win, COLOR_PAIR(1));
-  std::pair<int, int>   lastLink = snake.getLastChain();
-  mvwprintw(_win, lastLink.first + 1, lastLink.second * 2 + 1, " ");
-  mvwprintw(_win, lastLink.first + 1, lastLink.second * 2 + 2, " ");
+  std::pair<size_t, size_t>   lastLink = snake.getLastChain();
+  mvwprintw(_win, lastLink.first + 1, lastLink.second * 2 + 1, lastLink.first + 1 == _height ? "__" : "  ");
   wrefresh(_win);
   return 0;
 }
