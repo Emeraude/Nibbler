@@ -32,11 +32,6 @@ void			*DynamicLoader::loadGui(const std::string &path)
   return handle;
 }
 
-void			DynamicLoader::setGui(IGui *& gui)
-{
-  _gui = gui;
-}
-
 IGui *		DynamicLoader::getGui() const
 {
   return _gui;

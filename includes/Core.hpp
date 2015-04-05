@@ -27,6 +27,7 @@ private:
 
   void	menu();
   void	game();
+  void	loadGui(const std::string &);
 
 public:
   Core(const size_t, const size_t, const std::string&);
@@ -34,7 +35,6 @@ public:
   Core(const Core &);
   Core& operator=(const Core &);
 
-  void	loadGui(const std::string &);
   void	launchGame();
 
 };

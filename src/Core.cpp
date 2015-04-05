@@ -37,7 +37,8 @@ void		Core::loadGui(const std::string & path)
   IGui *(*display)(std::pair<std::size_t, std::size_t>);
   _symbol = _dynLoader->loadGui(path);
 
-  display = reinterpret_cast<IGui *(*)(std::pair<size_t, size_t>)>(dlsym(_symbol, "loadGui"));
+  if (!(display = reinterpret_cast<IGui *(*)(std::pair<size_t, size_t>)>(dlsym(_symbol, "loadGui"))))
+    throw SymbolLoaderException("Symbol in dynamic library is invalid.");
   _gui = (display)(std::pair<std::size_t, std::size_t>(_caseX, _caseY));
 }
 

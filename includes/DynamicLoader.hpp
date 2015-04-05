@@ -21,8 +21,6 @@ public:
   void	*loadGui(const std::string &);
 
   IGui	*getGui() const;
-
-  void	setGui(IGui *&);
 };
 
 #endif

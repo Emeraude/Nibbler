@@ -22,4 +22,11 @@ public:
   virtual ~DynamicLoaderException() throw();
 };
 
+class SymbolLoaderException : public NibblerException
+{
+public:
+  SymbolLoaderException(std::string str);
+  virtual ~SymbolLoaderException() throw();
+};
+
 #endif

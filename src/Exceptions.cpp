@@ -16,3 +16,9 @@ DynamicLoaderException::DynamicLoaderException(std::string str) : NibblerExcepti
 {
   _str = std::string("DynamicLoaderException : ") + str;
 }
+
+SymbolLoaderException::~SymbolLoaderException() throw() {}
+SymbolLoaderException::SymbolLoaderException(std::string str) : NibblerException(str)
+{
+  _str = std::string("SymbolLoaderException : ") + str;
+}
