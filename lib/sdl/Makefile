@@ -1,4 +1,4 @@
-NAME		= 	sdl.so
+NAME		= 	../../sdl.so
 
 DIR		=	src
 

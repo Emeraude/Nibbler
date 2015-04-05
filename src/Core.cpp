@@ -3,15 +3,7 @@
 
 Core::Core(const std::string &libPath)
 {
-  IGui                  *(*display)(std::pair<std::size_t, std::size_t>);
-
-  void *symbol = _dynLoader->loadGui(libPath);
-
-
-  display = reinterpret_cast<IGui *(*)(std::pair<size_t, size_t>)>(dlsym(symbol, "loadGui"));
-  _gui = (display)(std::pair<std::size_t, std::size_t>(1000, 500));
-  // _gui = new (sdlGui)(std::pair<size_t, size_t>(1000, 500));
-
+  loadGui(libPath);
 }
 
 Core::~Core()
@@ -29,6 +21,15 @@ Core&		Core::operator=(const Core &rhs __attribute__((unused)))
     {
     }
   return *this;
+}
+
+void		Core::loadGui(const std::string & path)
+{
+  IGui *(*display)(std::pair<std::size_t, std::size_t>);
+  void *symbol = _dynLoader->loadGui(path);
+
+  display = reinterpret_cast<IGui *(*)(std::pair<size_t, size_t>)>(dlsym(symbol, "loadGui"));
+  _gui = (display)(std::pair<std::size_t, std::size_t>(1000, 500));
 }
 
 void		Core::launchGame()

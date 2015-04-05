@@ -22,6 +22,7 @@ public:
   Core(const Core &);
   Core& operator=(const Core &);
 
+  void	loadGui(const std::string &);
   void	launchGame();
 
   int	menu();
