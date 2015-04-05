@@ -1,6 +1,7 @@
 #ifndef SNAKE_HPP
 # define SNAKE_HPP
 
+# include <unistd.h>
 # include <deque>
 # include <utility>
 
@@ -18,10 +19,12 @@ private:
   std::pair<int, int> setDirLeft();
   std::pair<int, int> setDirTop();
 
+  size_t	_limitX, _limitY;
+
   bool		checkBorder() const;
 
 public:
-  Snake();
+  Snake(size_t x, size_t y);
   ~Snake();
   Snake(const Snake&);
   Snake& operator=(const Snake&);

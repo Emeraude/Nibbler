@@ -1,7 +1,8 @@
 #include "Snake.hpp"
 #include "option.h"
 
-Snake::Snake()
+Snake::Snake(size_t limitX, size_t limitY)
+  : _limitX(limitX), _limitY(limitY)
 {
   _snake.push_back(std::pair<int, int>(10, 10));
   _snake.push_back(std::pair<int, int>(10, 11));
@@ -59,9 +60,9 @@ std::pair<int, int>		Snake::setDirTop()
 bool				Snake::checkBorder() const
 {
   if (_snake.front().first < 0
-      || _snake.front().first > WIDTH
+      || _snake.front().first >= _limitX
       || _snake.front().second < 0
-      || _snake.front().second > HEIGHT)
+      || _snake.front().second >= _limitY)
     return (false);
   return true;
 }

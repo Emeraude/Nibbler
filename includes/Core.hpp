@@ -17,6 +17,8 @@ private:
   IGui *_gui;;
   Snake	_snake;
   Apple _apple;
+  size_t _caseX;
+  size_t _caseY;
 
 public:
   Core(const std::string&, const std::string&, const std::string&);
