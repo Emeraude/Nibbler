@@ -36,6 +36,7 @@ bool		Apple::generateApple(const Snake& snake)
   size_t maxCases = _snake.getLimitX() * _snake.getLimitY();
 
   // if (_snake.getSnake().size() > HEIGHT * WIDTH / BLOC_SIZE)
+  std::cout << tmpApple.first<<std::endl;
   if (_snake.getSnake().size() > maxCases)
     return false;
   for (it = snake.getSnake().begin(); it != snake.getSnake().end(); ++it)
@@ -45,6 +46,7 @@ bool		Apple::generateApple(const Snake& snake)
   	it = snake.getSnake().begin();
       }
     }
+  _apple = tmpApple;
   return true;
 }
 

@@ -10,6 +10,7 @@ Core::Core(const size_t casesX, const size_t casesY, const std::string &libPath)
   _caseX = casesX;
   _caseY = casesY;
   loadGui(libPath);
+  _apple.generateApple(_snake);
 }
 
 Core::~Core()
@@ -64,6 +65,7 @@ void		Core::game()
       return ;
     if (_snake.getSnake().front() == _apple.getApple()) {
       _apple.generateApple(_snake);
+      
       _snake.growth();
     }
     usleep(100000);
