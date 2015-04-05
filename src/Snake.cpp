@@ -1,6 +1,8 @@
 #include "Snake.hpp"
 #include "option.h"
 
+#include <iostream>
+
 Snake::Snake(size_t limitX, size_t limitY)
   : _limitX(limitX), _limitY(limitY)
 {
@@ -23,7 +25,7 @@ Snake::~Snake()
 }
 
 Snake::Snake(const Snake & rhs) :
-  _snake(rhs._snake)
+  _snake(rhs._snake), _dir(rhs._dir), eated(rhs.eated), _limitX(rhs._limitX), _limitY(rhs._limitY)
 {
 
 }
@@ -104,4 +106,14 @@ const std::deque<std::pair<int, int> > Snake::getSnake() const
 std::pair<int, int>	Snake::getLastChain() const
 {
   return (_lastChain);
+}
+
+int		Snake::getLimitX() const
+{
+  return (_limitX);
+}
+
+int		Snake::getLimitY() const
+{
+  return (_limitY);
 }

@@ -4,11 +4,11 @@
 #include "Core.hpp"
 #include "option.h"
 
-Core::Core(const std::string &casesX, const std::string &casesY, const std::string &libPath) :
-  _snake(), _apple(_snake)
+Core::Core(const size_t casesX, const size_t casesY, const std::string &libPath) :
+  _snake(casesX, casesY), _apple(_snake)
 {
-  std::istringstream(casesX) >> _caseX;
-  std::istringstream(casesY) >> _caseY;
+  _caseX = casesX;
+  _caseY = casesY;
   loadGui(libPath);
 }
 
@@ -17,10 +17,10 @@ Core::~Core()
 
 }
 
-Core::Core(const Core &rhs __attribute__((unused))) :
-  _snake(), _apple(_snake)
-{
-}
+// Core::Core(const Core &rhs __attribute__((unused))) :
+//   _snake(), _apple(_snake)
+// {
+// }
 
 Core&		Core::operator=(const Core &rhs __attribute__((unused)))
 {

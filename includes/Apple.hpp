@@ -14,8 +14,8 @@ private:
 public:
   Apple(const Snake &);
   ~Apple();
-  Apple(const Apple&);
-  Apple& operator=(const Apple&);
+  // Apple(const Apple&);
+  // Apple& operator=(const Apple&);
 
   std::pair<int, int> generateTemporaryApple();
   bool generateApple(const Snake& snake);

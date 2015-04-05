@@ -19,7 +19,7 @@ private:
   std::pair<int, int> setDirLeft();
   std::pair<int, int> setDirTop();
 
-  size_t	_limitX, _limitY;
+  int	_limitX, _limitY;
 
   bool		checkBorder() const;
 
@@ -35,6 +35,9 @@ public:
   void		growth();
   const std::deque<std::pair<int, int> > getSnake() const;
   std::pair<int, int>	getLastChain() const;
+
+  int		getLimitX() const;
+  int		getLimitY() const;
 };
 
 #endif

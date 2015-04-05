@@ -73,6 +73,9 @@ int	LibX::printGame(const Snake &snake, const Apple & apple)
   std::deque<std::pair<int, int> > s = snake.getSnake();
   std::deque<std::pair<int, int> >::iterator it = s.begin();
 
+  std::pair<int, int> food = apple.getApple();
+  printSquare(food.first, food.second, _blueContext);
+
   std::pair<int, int>	last_chain = snake.getLastChain();
   if (last_chain.first >= 0) {
     printSquare(last_chain.first, last_chain.second, _whiteContext);

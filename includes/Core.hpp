@@ -6,6 +6,7 @@
 # include "Snake.hpp"
 # include "IGui.hpp"
 # include "Apple.hpp"
+# include <sstream>
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
@@ -21,7 +22,7 @@ private:
   size_t _caseY;
 
 public:
-  Core(const std::string&, const std::string&, const std::string&);
+  Core(const size_t, const size_t, const std::string&);
   ~Core();
   Core(const Core &);
   Core& operator=(const Core &);

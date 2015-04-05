@@ -9,7 +9,11 @@ int		main(int argc, char **argv)
 {
   if (argc == 4)
     {
-      Core		game(argv[1], argv[2], argv[3]);
+      size_t	sizeX, sizeY;
+
+      std::istringstream(argv[1]) >> sizeX;
+      std::istringstream(argv[2]) >> sizeY;
+      Core		game(sizeX, sizeY, argv[3]);
       game.launchGame();
     }
   else
