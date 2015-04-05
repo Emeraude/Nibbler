@@ -1,25 +1,20 @@
-NAME		= 	nibbler
+NAME		= 	libX.so
 
-DIR		=	src
-
-SRC		+=  	$(DIR)/main.cpp
-SRC		+=  	$(DIR)/Snake.cpp
-SRC		+=  	$(DIR)/Core.cpp
-SRC		+=  	$(DIR)/DynamicLoader.cpp
+SRC		+=  	LibX.cpp
 
 OBJ		=	$(SRC:.cpp=.o)
 
+CXXFLAGS	+=	-fPIC
 CXXFLAGS	+= 	-W -Wall -Wextra
-CXXFLAGS	+= 	-I includes
-CXXFLAGS	+= 	-I interfaces
-CXXFLAGS	+= 	-Wl,--export-dynamic -rdynamic
-CXXFLAGS	+= 	-g
+CXXFLAGS	+= 	-I ../../interfaces
+CXXFLAGS	+= 	-I ../../includes
 
-LDXXFLAGS	+=	-ldl
+LDXXFLAGS	+=	-lX11
+LDXXFLAGS	+=	-shared
 
 RM		= 	rm -f
 
-CC		= 	g++
+CC		= 	clang++
 
 %.o: %.cpp
 		@$(CC) -c -o $@ $<  $(CXXFLAGS)

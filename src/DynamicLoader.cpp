@@ -34,8 +34,9 @@ void			*DynamicLoader::loadGui(const std::string &path)
   // std::string tpath = "/home/duques_g/Programming/Nibbler/sdl.so";
   std::cout << "loadGui [1]" << std::endl;
   // if (!(_handle = dlopen(path.data(), RTLD_LAZY | RTLD_GLOBAL)))
-  if (!(handle = dlopen(path.data(), RTLD_LAZY)))
-    std::cerr << "DLOPEN FAILED" << std::endl;
+  // if (!(handle = dlopen(path.data(), RTLD_LAZY)))
+  if (!(handle = dlopen(path.data(), RTLD_LAZY | RTLD_GLOBAL | RTLD_NOW)))
+    std::cerr << "DLOPEN FAILED: " << dlerror() << std::endl;
   std::cout << "loadGui [2]" << std::endl;
   // display = reinterpret_cast<IGui *(*)(std::pair<size_t, size_t>)>(dlsym(handle, "loadGui"));
   // std::cout << "loadGui [3]" << std::endl;

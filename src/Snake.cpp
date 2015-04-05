@@ -7,20 +7,20 @@ Snake::Snake()
   _snake.push_back(std::pair<int, int>(10, 12));
 
   ptr[0] = &Snake::setDirRight;
-  ptr[1] = &Snake::setDirDown; 
+  ptr[1] = &Snake::setDirDown;
   ptr[2] = &Snake::setDirLeft;
   ptr[3] = &Snake::setDirTop;
 }
 
 Snake::~Snake()
 {
-  
+
 }
 
 Snake::Snake(const Snake & rhs) :
   _snake(rhs._snake)
 {
-  
+
 }
 
 Snake&		Snake::operator=(const Snake& rhs)

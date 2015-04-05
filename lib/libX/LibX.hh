@@ -7,18 +7,24 @@
 # include <X11/Xatom.h>
 # include <X11/keysym.h>
 
+# include <utility>
+# include <deque>
+
+# include <Snake.hpp>
+# include <IGui.hpp>
+
 # define PIXELS_BY_CASE	(5)
 # define RED_RGB	("#FF0000")
 # define BLUE_RGB	("#0000FF")
 
-class		LibX
+class		LibX : public IGui
 {
 
 private:
 
-  extern char**	environ;
+  // extern char**	environ;
 
-  Display	_display;
+  Display	*_display;
   Window	_window;
   size_t	_sizeX;
   size_t	_sizeY;
@@ -27,21 +33,19 @@ private:
   GC		_blueContext;
   XColor	_redParsed;
   XColor	_blueParsed;
-  ColorMap	_colorMap;
+  Colormap	_colorMap;
 
-  char		*_red = RED_RGB;
-  char		*_blue = BLUE_RGB;
-
-  void		printSquare(int x, int y);
+  void		printSquare(int, int, GC);
 
 public:
 
   LibX(std::pair<size_t, size_t>);
-  virtual ~IGui();
+  virtual ~LibX();
 
-  virtual int launchMenu();
-  virtual int printGame(const Snake &);
-  virtual int guiQuit();
+  virtual int	launchMenu();
+  virtual int	printGame(const Snake &);
+  virtual int	eventManager(const Snake &);
+  virtual int	guiQuit();
 };
 
 #endif // !LIBX_H_
