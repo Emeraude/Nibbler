@@ -4,6 +4,7 @@ DIR		=	src
 
 SRC		+=  	$(DIR)/main.cpp
 SRC		+=  	$(DIR)/Snake.cpp
+SRC		+=  	$(DIR)/Apple.cpp
 SRC		+=  	$(DIR)/Core.cpp
 SRC		+=  	$(DIR)/DynamicLoader.cpp
 

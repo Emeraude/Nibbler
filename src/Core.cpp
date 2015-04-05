@@ -1,8 +1,10 @@
 #include <dlfcn.h>
 #include <unistd.h>
 #include "Core.hpp"
+#include "option.h"
 
-Core::Core(const std::string &libPath)
+Core::Core(const std::string &libPath) :
+  _snake(), _apple(_snake)
 {
   loadGui(libPath);
 }
@@ -12,7 +14,8 @@ Core::~Core()
 
 }
 
-Core::Core(const Core &rhs __attribute__((unused)))
+Core::Core(const Core &rhs __attribute__((unused))) :
+  _snake(), _apple(_snake)
 {
 }
 
@@ -30,7 +33,7 @@ void		Core::loadGui(const std::string & path)
   void *symbol = _dynLoader->loadGui(path);
 
   display = reinterpret_cast<IGui *(*)(std::pair<size_t, size_t>)>(dlsym(symbol, "loadGui"));
-  _gui = (display)(std::pair<std::size_t, std::size_t>(1000, 500));
+  _gui = (display)(std::pair<std::size_t, std::size_t>(WIDTH, HEIGHT));
 }
 
 void		Core::launchGame()
@@ -54,7 +57,10 @@ void		Core::game()
   while (ret != 0 && ret != -1) {
     ret = _gui->eventManager(_snake);
     _gui->printGame(_snake);
-    _snake.move();
+    if (_snake.move())
+      return ;
+    // if (_snake.getSnake() == _apple.getApple())
+    //   _apple.generateApple();
     usleep(100000);
   }
 }

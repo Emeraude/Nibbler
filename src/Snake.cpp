@@ -58,10 +58,10 @@ std::pair<int, int>		Snake::setDirTop()
 
 bool				Snake::checkBorder() const
 {
-  if (_snake.back().first < 0
-      || _snake.back().first * BLOC_SIZE > WIDTH
-      || _snake.back().second < 0
-      || _snake.back().second * BLOC_SIZE > HEIGHT)
+  if (_snake.front().first < 0
+      || _snake.front().first > WIDTH
+      || _snake.front().second < 0
+      || _snake.front().second > HEIGHT)
     return (false);
   return true;
 }

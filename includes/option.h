@@ -3,7 +3,7 @@
 
 # define BLOC_SIZE 10
 
-# define HEIGHT (BLOC_SIZE * 20)
-# define WIDTH (BLOC_SIZE * 20)
+# define HEIGHT 20
+# define WIDTH 20
 
 #endif
