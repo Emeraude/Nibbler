@@ -22,6 +22,7 @@ private:
   int	_limitX, _limitY;
 
   bool		checkBorder() const;
+  bool		checkCannibalism() const;
 
 public:
   Snake(size_t x, size_t y);

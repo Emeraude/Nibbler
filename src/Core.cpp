@@ -64,8 +64,7 @@ void		Core::game()
     if (_snake.move())
       return ;
     if (_snake.getSnake().front() == _apple.getApple()) {
-      _apple.generateApple(_snake);
-      
+      _apple.generateApple(_snake);      
       _snake.growth();
     }
     usleep(100000);

@@ -70,6 +70,17 @@ bool				Snake::checkBorder() const
   return true;
 }
 
+bool				Snake::checkCannibalism() const
+{
+  std::deque<std::pair<int, int> >::const_iterator it = _snake.begin();
+
+  for (++it; it != _snake.end(); ++it) {
+    if (*it == _snake.front())
+      return false;
+  }
+  return true;
+}
+
 int		Snake::move()
 {
   _lastChain = _snake.back();
@@ -79,7 +90,7 @@ int		Snake::move()
     --_eated;
   _dir %= 4;
   _snake.push_front(std::pair<int, int>((this->*ptr[_dir])()));
-  if (!checkBorder())
+  if (!checkBorder() || !checkCannibalism())
     return (1);
   return (0);
 }
