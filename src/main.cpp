@@ -15,8 +15,8 @@ int		main(int argc, char **argv)
       std::istringstream(argv[1]) >> sizeX;
       std::istringstream(argv[2]) >> sizeY;
       try {
-      Core		game(sizeX, sizeY, argv[3]);
-      game.launchGame();
+	Core		game(sizeX, sizeY, argv[3]);
+	game.launchGame();
       }
       catch (NibblerException &e) {
 	std::cerr << e.what() << std::endl;
