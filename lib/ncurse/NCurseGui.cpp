@@ -3,12 +3,13 @@
 
 NCurseGui::NCurseGui(std::pair<std::size_t, std::size_t> dim)
 {
+  _paused = false;
   _width = dim.first * 2;
   _height = dim.second;
   _win = newwin(_height, _width, 0, 0);
   initscr();
   start_color();
-  init_pair(1, COLOR_GREEN, COLOR_BLACK);
+  init_pair(1, COLOR_BLACK, COLOR_GREEN);
   init_pair(2, COLOR_BLACK, COLOR_RED);
   init_pair(3, COLOR_BLACK, COLOR_BLUE);
   raw();
@@ -52,7 +53,7 @@ int		NCurseGui::printGame(const Snake& snake, const Apple & apple)
     wattroff(_win, COLOR_PAIR(2));
   }
   wattron(_win, COLOR_PAIR(1));
-  mvwprintw(_win, apple.getApple().first + 1, apple.getApple().second * 2 + 1, "00");
+  mvwprintw(_win, apple.getApple().first + 1, apple.getApple().second * 2 + 1, "  ");
   wattroff(_win, COLOR_PAIR(1));
   std::pair<size_t, size_t>   lastLink = snake.getLastChain();
   mvwprintw(_win, lastLink.first + 1, lastLink.second * 2 + 1, lastLink.first + 1 == _height ? "__" : "  ");
@@ -65,13 +66,17 @@ int		NCurseGui::eventManager(Snake& snake)
   char c;
 
   nodelay(stdscr, true);
-  c = getch();
-  if (c == 4)
-    snake.moveRight();
-  if (c == 5)
-    snake.moveLeft();
-  if (c == 27)
-    return (0);
+  do {
+    c = getch();
+    if (c == 4)
+      snake.moveRight();
+    if (c == 5)
+      snake.moveLeft();
+    if (c == 27 || c == 'q' || c == 'Q')
+      return (0);
+    if (c == 'p' || c == 'P')
+      _paused ^= 1;
+  } while (_paused);
   return 1;
 }
 

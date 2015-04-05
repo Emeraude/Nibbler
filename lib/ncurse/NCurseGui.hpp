@@ -8,6 +8,7 @@
 class NCurseGui : public IGui
 {
 private:
+  bool _paused;
   size_t _width;
   size_t _height;
 
@@ -16,7 +17,7 @@ private:
 public:
   NCurseGui(std::pair<std::size_t, std::size_t>);
   ~NCurseGui();
-  
+
   int launchMenu();
   int printGame(const Snake &, const Apple &);
   int eventManager(Snake &);

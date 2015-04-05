@@ -61,10 +61,9 @@ void		Core::incSpeed()
 
 void		Core::game()
 {
-  int		ret = 1;
-
-  while (ret != 0) {
-    ret = _gui->eventManager(_snake);
+  while (1) {
+    if (!_gui->eventManager(_snake))
+      return;
     _gui->printGame(_snake, _apple);
     if (_snake.move())
       return ;
