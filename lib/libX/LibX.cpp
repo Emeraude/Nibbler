@@ -100,8 +100,8 @@ int	LibX::printGame(const Snake &snake, const Apple & apple)
 
 int	LibX::eventManager(Snake &snake)
 {
-  if (XCheckMaskEvent(_display, KeyPressMask, &_event)) {
-    do {
+  do {
+    if (XCheckMaskEvent(_display, KeyPressMask, &_event)) {
       KeySym key = XLookupKeysym(&_event.xkey, 0);
       switch (key) {
       case (XK_Left):
@@ -113,16 +113,16 @@ int	LibX::eventManager(Snake &snake)
       case (XK_Escape):
 	return (0);
 	break;
-      case (XK_p):
+      case (XK_p | XK_P):
 	_paused ^= 1;
 	break;
-      case (XK_q):
+      case (XK_q | XK_Q):
 	return (0);
 	break;
       }
       usleep(10);
-    } while (_paused);
-  }
+    }
+  } while (_paused);
   return (1);
 }
 
