@@ -5,6 +5,7 @@
 # include "DynamicLoader.hpp"
 # include "Snake.hpp"
 # include "IGui.hpp"
+# include "Apple.hpp"
 
 # define EXIT_SUCCESS 0
 # define EXIT_FAILURE 1
@@ -15,6 +16,7 @@ private:
   DynamicLoader	*_dynLoader;
   IGui *_gui;;
   Snake	_snake;
+  Apple _apple;
 
 public:
   Core(const std::string&);

@@ -19,16 +19,19 @@ int		sdlGui::launchMenu()
 
 int		sdlGui::printGame(const Snake&)
 {
+  std::cout << "printGame()" << std::endl;
   return 0;
 }
 
 int		sdlGui::eventManager(const Snake&)
 {
+  std::cout << "eventManager" << std::endl;
   return 0;
 }
 
 int		sdlGui::guiQuit()
 {
+  std::cout << "guiQuit" << std::endl;
   return 0;
 }
 
