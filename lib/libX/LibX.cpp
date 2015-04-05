@@ -1,7 +1,5 @@
 #include "LibX.hh"
 
-#include <iostream>
-
 LibX::LibX(std::pair<size_t, size_t> dimension)
   : _sizeX(dimension.first), _sizeY(dimension.second)
 {
@@ -11,8 +9,6 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
   char		blue[] = BLUE_RGB;
   char		white[] = WHITE_RGB;
   char		green[] = GREEN_RGB;
-
-// XSetErrorHandler((void*)0);
 
   if (!(_display = XOpenDisplay((char*)0))) {
     throw LibXException("LibX is unable to be opened.");
@@ -52,6 +48,8 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
 
 LibX::~LibX()
 {
+  (void)_sizeX;
+  (void)_sizeY;
   XUnmapWindow(_display, _window);
   XCloseDisplay(_display);
 }
@@ -69,8 +67,6 @@ void	LibX::printSquare(int x, int y, GC colorContext)
   int	y_end = y_start + PIXELS_BY_CASE;
 
   while (y_start < y_end) {
-    // std::cout << "X start: " << x_start << " Y start: " << y_start;
-    // std::cout << " X end: " << x_end << " Y end: " << y_end << std::endl;
     XDrawLine(_display, _window, colorContext, x_start, y_start, x_end, y_start);
     ++y_start;
   }
@@ -90,7 +86,6 @@ int	LibX::printGame(const Snake &snake, const Apple & apple)
   }
 
   if (it != s.end()) {
-    // std::cout << "X: " << it->first << " Y: " << it->second << std::endl;
     printSquare(it->first, it->second, _blueContext);
     ++it;
   }
