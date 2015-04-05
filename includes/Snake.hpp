@@ -9,6 +9,7 @@ class Snake
 private:
   std::deque<std::pair<int, int> >	_snake;
   int _dir;
+  int eated;
   std::pair<int, int> (Snake::*ptr[4])();
   std::pair<int, int>	_lastChain;
 
@@ -28,6 +29,7 @@ public:
   int		move();
   void		moveLeft();
   void		moveRight();
+  void		growth();
   const std::deque<std::pair<int, int> > getSnake() const;
   std::pair<int, int>	getLastChain() const;
 };

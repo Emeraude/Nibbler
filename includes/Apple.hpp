@@ -10,6 +10,7 @@ class Apple
 private:
   std::pair<int, int> _apple;
   Snake	_snake;
+
 public:
   Apple(const Snake &);
   ~Apple();
