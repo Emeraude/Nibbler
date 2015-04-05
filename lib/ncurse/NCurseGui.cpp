@@ -24,13 +24,6 @@ NCurseGui::NCurseGui(std::pair<std::size_t, std::size_t> dim)
 
 NCurseGui::~NCurseGui()
 {
-  wborder(_win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
-  wrefresh(_win);
-  delwin(_win);
-  curs_set(1);
-  noraw();
-  echo();
-  endwin();
 }
 
 int		NCurseGui::launchMenu()
