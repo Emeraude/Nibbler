@@ -14,7 +14,7 @@ public:
 
   /* launchGame return 0 for success and -1 for failure */
   virtual int printGame(const Snake &) = 0;
-  virtual int eventManager(const Snake &) = 0;
+  virtual int eventManager(Snake &) = 0;
 
   /* guiQuit return 0 for success and -1 for failure */
   virtual int guiQuit() = 0;

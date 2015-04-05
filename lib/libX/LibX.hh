@@ -42,7 +42,7 @@ public:
 
   virtual int	launchMenu();
   virtual int	printGame(const Snake &);
-  virtual int	eventManager(const Snake &);
+  virtual int	eventManager(Snake &);
   virtual int	guiQuit();
 };
 

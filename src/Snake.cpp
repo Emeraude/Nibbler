@@ -54,8 +54,10 @@ std::pair<int, int>		Snake::setDirTop()
 
 void		Snake::move()
 {
-  _snake.pop_front();
-  _snake.push_back(std::pair<int, int>((this->*ptr[_dir])()));
+  _snake.pop_back();
+  _snake.push_front(std::pair<int, int>((this->*ptr[_dir])()));
+  // _snake.pop_front();
+  // _snake.push_back(std::pair<int, int>((this->*ptr[_dir])()));
 }
 
 void		Snake::moveLeft()

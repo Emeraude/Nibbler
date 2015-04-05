@@ -79,14 +79,31 @@ int	LibX::printGame(const Snake &snake)
   }
 
   XFlush(_display);
-  sleep(2);
   return (0);
 }
 
-int	LibX::eventManager(const Snake &snake)
+int	LibX::eventManager(Snake &snake)
 {
-  (void)snake;
-  return (0);
+  if (XCheckMaskEvent(_display, KeyPressMask, &_event)) {
+    KeySym key = XLookupKeysym(&_event.xkey, 0);
+    switch (key) {
+    case (XK_Left):
+      std::cout << "LEFT\n";
+      snake.moveLeft();
+      break;
+    case (XK_Right):
+      std::cout << "RIGHT\n";
+      snake.moveRight();
+      break;
+    case (XK_space):
+      sleep(10);
+      break;
+    case (XK_Escape):
+      return (0);
+      break;
+    }
+  }
+  return (1);
 }
 
 int	LibX::guiQuit()

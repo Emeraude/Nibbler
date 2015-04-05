@@ -47,11 +47,17 @@ int		Core::menu()
   return ret;
 }
 
+#include <unistd.h>
+
 int		Core::game()
 {
   int		ret = 1;
 
-  while (ret != 0 && ret != -1)
-    ret = _gui->printGame(_snake);
+  while (ret != 0 && ret != -1) {
+    ret = _gui->eventManager(_snake);
+    _gui->printGame(_snake);
+    _snake.move();
+    usleep(100000);
+  }
   return (ret);
 }
