@@ -38,20 +38,19 @@ void		Core::launchGame()
   game();
 }
 
-int		Core::menu()
+void		Core::menu()
 {
-  int		ret = 1;
+  int ret = 1;
 
   while (ret != 0)
     ret = _gui->launchMenu();
-  return ret;
 }
 
-int		Core::game()
+void		Core::game()
 {
-  int		ret = 1;
-
-  while (ret != 0 && ret != -1)
-    ret = _gui->printGame(_snake);
-  return (ret);
+  while (42) {
+    _snake.move();
+    _gui->printGame(_snake);
+    _gui->eventManager(_snake);
+  }
 }

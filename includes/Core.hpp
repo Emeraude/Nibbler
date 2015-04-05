@@ -25,8 +25,8 @@ public:
   void	loadGui(const std::string &);
   void	launchGame();
 
-  int	menu();
-  int	game();
+  void	menu();
+  void	game();
 };
 
 #endif
