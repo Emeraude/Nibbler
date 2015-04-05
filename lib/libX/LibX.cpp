@@ -18,8 +18,8 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
     throw ResolutionException("Invalid Resolution.");
   _window = XCreateSimpleWindow(_display, RootWindow(_display, 0),
 				1, 1, dim_x, dim_y, 0,
-				WhitePixel(_display, 0),
-				WhitePixel(_display, 0));
+				BlackPixel(_display, 0),
+				BlackPixel(_display, 0));
   XMapWindow(_display, _window);
 
   _colorMap = DefaultColormap(_display, 0);

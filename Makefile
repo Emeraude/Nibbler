@@ -34,16 +34,25 @@ $(NAME):	$(OBJ)
 		@printf "\n"
 		@printf "[\033[0;36mbuilt\033[0m] % 32s\n" $(NAME) | sed "s/ /./5g"
 		@printf "\n"
+		make -C ./lib/sdl
+		make -C ./lib/libX
+		make -C ./lib/ncurse
 
 clean:
 		@$(RM) $(OBJ)
 		@printf "[\033[0;31mdeleted\033[0m] % 30s\n" $(OBJ) | sed "s/ /./3g"
 		@printf "\n"
+		make clean -C ./lib/sdl
+		make clean -C ./lib/libX
+		make clean -C ./lib/ncurse
 
 fclean:		clean
 		@$(RM) $(NAME)
 		@printf "[\033[0;35mdeleted\033[0m] % 30s\n" $(NAME) | sed "s/ /./3g"
 		@printf "\n"
+		make fclean -C ./lib/sdl
+		make fclean -C ./lib/libX
+		make fclean -C ./lib/ncurse
 
 re:		fclean all
 

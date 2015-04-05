@@ -18,7 +18,7 @@
 # define PIXELS_BY_CASE	(20)
 # define RED_RGB	("#FF0000")
 # define BLUE_RGB	("#0000FF")
-# define WHITE_RGB	("#FFFFFF")
+# define WHITE_RGB	("#000000")
 # define GREEN_RGB	("#01DF01")
 
 class		LibX : public IGui
