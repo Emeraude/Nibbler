@@ -69,7 +69,10 @@ bool				Snake::checkBorder() const
 int		Snake::move()
 {
   _lastChain = _snake.back();
-  _snake.pop_back();
+  if (!eated)
+    _snake.pop_back();
+  else
+    --eated;
   _dir %= 4;
   _snake.push_front(std::pair<int, int>((this->*ptr[_dir])()));
   if (!checkBorder())
@@ -87,7 +90,12 @@ void		Snake::moveRight()
   ++_dir %= 4;
 }
 
-std::deque<std::pair<int, int> > Snake::getSnake() const
+void		Snake::growth()
+{
+  eated += 3;
+}
+
+const std::deque<std::pair<int, int> > Snake::getSnake() const
 {
   return (_snake);
 }
