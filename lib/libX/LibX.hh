@@ -15,7 +15,7 @@
 
 # include "LibXException.hpp"
 
-# define PIXELS_BY_CASE	(10)
+# define PIXELS_BY_CASE	(20)
 # define RED_RGB	("#FF0000")
 # define BLUE_RGB	("#0000FF")
 # define WHITE_RGB	("#FFFFFF")

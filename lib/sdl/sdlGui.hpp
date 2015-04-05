@@ -5,7 +5,7 @@
 # include "SDLExceptions.hpp"
 # include "IGui.hpp"
 
-# define BLOC 10
+# define BLOC 20
 
 class sdlGui : public IGui
 {

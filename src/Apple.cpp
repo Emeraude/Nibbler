@@ -31,17 +31,18 @@ std::pair<int, int> Apple::generateTemporaryApple()
 
 bool		Apple::generateApple(const Snake& snake)
 {
+  std::deque<std::pair <int, int> >s = snake.getSnake();
   std::deque<std::pair <int, int> >::const_iterator it;
   std::pair<int, int> tmpApple = generateTemporaryApple();
   size_t maxCases = _snake.getLimitX() * _snake.getLimitY();
 
-  if (_snake.getSnake().size() > maxCases)
+  if (s.size() > maxCases)
     return false;
-  for (it = snake.getSnake().begin(); it != snake.getSnake().end(); ++it)
+  for (it = s.begin(); it != s.end(); ++it)
     {
-      if (*it == tmpApple) {
+      if (it->first == tmpApple.first && it->second == tmpApple.second) {
   	tmpApple = generateTemporaryApple();
-  	it = snake.getSnake().begin();
+  	it = s.begin();
       }
     }
   _apple = tmpApple;

@@ -31,7 +31,6 @@ NCurseGui::~NCurseGui()
   noraw();
   echo();
   endwin();
-  std::cout << "FDSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS"<< std::endl;
 }
 
 int		NCurseGui::launchMenu()
@@ -91,7 +90,6 @@ int		NCurseGui::guiQuit()
   noraw();
   echo();
   endwin();
-  std::cout << "guiQuit" << std::endl;
   return 0;
 }
 

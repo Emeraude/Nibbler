@@ -27,16 +27,16 @@ sdlGui::sdlGui(std::pair<std::size_t, std::size_t> dim)
   SDL_FillRect(_body, NULL, SDL_MapRGB(_win->format, 255, 0, 0));
   SDL_WM_SetCaption("Nibbler SDL", NULL);
   black = SDL_CreateRGBSurface(SDL_HWSURFACE, _width, _height, 32, 0, 0, 0, 0);
-  SDL_FillRect(black, NULL, SDL_MapRGB(_win->format, 255, 255, 255));
+  SDL_FillRect(black, NULL, SDL_MapRGB(_win->format, 0, 0, 0));
   SDL_Flip(_win);
 }
 
 sdlGui::~sdlGui()
 {
-  SDL_FreeSurface(_win);
   SDL_FreeSurface(_apple);
   SDL_FreeSurface(_body);
   SDL_FreeSurface(_head);
+  SDL_FreeSurface(_win);
 }
 
 int		sdlGui::launchMenu()
@@ -89,7 +89,10 @@ int		sdlGui::eventManager(Snake& snake)
 
 int		sdlGui::guiQuit()
 {
-  std::cout << "guiQuit" << std::endl;
+  SDL_FreeSurface(_win);
+  SDL_FreeSurface(_apple);
+  SDL_FreeSurface(_body);
+  SDL_FreeSurface(_head);
   return 0;
 }
 

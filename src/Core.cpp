@@ -17,7 +17,6 @@ Core::Core(const size_t casesX, const size_t casesY, const std::string &libPath)
 Core::~Core()
 {
   dlclose(_symbol);
-  delete _gui;
 }
 
 // Core::Core(const Core &rhs __attribute__((unused))) :
@@ -47,6 +46,7 @@ void		Core::launchGame()
 {
   menu();
   game();
+  _gui->guiQuit();
 }
 
 void		Core::menu()
