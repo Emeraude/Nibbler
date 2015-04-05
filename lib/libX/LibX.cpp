@@ -48,8 +48,6 @@ LibX::LibX(std::pair<size_t, size_t> dimension)
 
 LibX::~LibX()
 {
-  (void)_sizeX;
-  (void)_sizeY;
   XUnmapWindow(_display, _window);
   XCloseDisplay(_display);
 }

@@ -9,8 +9,8 @@ class Snake
 {
 private:
   std::deque<std::pair<int, int> >	_snake;
-  int _dir;
-  int _eated;
+  int	_dir;
+  int	_eated;
   std::pair<int, int> (Snake::*ptr[4])();
   std::pair<int, int>	_lastChain;
 
@@ -19,6 +19,7 @@ private:
   std::pair<int, int> setDirLeft();
   std::pair<int, int> setDirTop();
 
+  std::size_t	_score;
   int	_limitX, _limitY;
 
   bool		checkBorder() const;
@@ -33,7 +34,7 @@ public:
   int		move();
   void		moveLeft();
   void		moveRight();
-  void		growth();
+  void		growth(size_t const spd);
   const std::deque<std::pair<int, int> > getSnake() const;
   std::pair<int, int>	getLastChain() const;
 

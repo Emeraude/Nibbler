@@ -3,13 +3,12 @@
 
 # include <algorithm>
 # include "Snake.hpp"
-# include "option.h"
 
 class Apple
 {
 private:
   std::pair<int, int> _apple;
-  Snake	_snake;
+  Snake const&	_snake;
 
 public:
   Apple(const Snake &);

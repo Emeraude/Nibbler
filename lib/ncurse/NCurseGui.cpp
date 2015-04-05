@@ -77,7 +77,6 @@ int		NCurseGui::eventManager(Snake& snake)
     snake.moveLeft();
   if (c == 27)
     return (0);
-  
   return 1;
 }
 

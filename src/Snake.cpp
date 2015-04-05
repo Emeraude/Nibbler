@@ -1,7 +1,5 @@
-#include "Snake.hpp"
-#include "option.h"
-
 #include <iostream>
+#include "Snake.hpp"
 
 Snake::Snake(size_t limitX, size_t limitY)
   : _limitX(limitX), _limitY(limitY)
@@ -16,6 +14,7 @@ Snake::Snake(size_t limitX, size_t limitY)
   ptr[2] = &Snake::setDirLeft;
   ptr[3] = &Snake::setDirTop;
 
+  _score = 0;
   _dir = 0;
   _eated = 0;
   _lastChain = std::make_pair(-1, -1);
@@ -23,13 +22,13 @@ Snake::Snake(size_t limitX, size_t limitY)
 
 Snake::~Snake()
 {
-
+  std::cout << "Score: " << _score << std::endl;
 }
 
 Snake::Snake(const Snake & rhs) :
   _snake(rhs._snake), _dir(rhs._dir), _eated(rhs._eated), _limitX(rhs._limitX), _limitY(rhs._limitY)
 {
-
+  _score = rhs._score;
 }
 
 Snake&		Snake::operator=(const Snake& rhs)
@@ -37,6 +36,7 @@ Snake&		Snake::operator=(const Snake& rhs)
   if (this != &rhs)
     {
       _snake = rhs._snake;
+      _score = rhs._score;
     }
   return *this;
 }
@@ -67,7 +67,7 @@ bool				Snake::checkBorder() const
       || _snake.front().first >= _limitX
       || _snake.front().second < 0
       || _snake.front().second >= _limitY)
-    return (false);
+    return false;
   return true;
 }
 
@@ -106,8 +106,9 @@ void		Snake::moveRight()
   ++_dir %= 4;
 }
 
-void		Snake::growth()
+void		Snake::growth(size_t const spd)
 {
+  _score += 1000000 / spd;
   _eated += 1;
 }
 
