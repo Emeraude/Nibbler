@@ -16,7 +16,8 @@ Core::Core(const size_t casesX, const size_t casesY, const std::string &libPath)
 
 Core::~Core()
 {
-
+  dlclose(_symbol);
+  delete _gui;
 }
 
 // Core::Core(const Core &rhs __attribute__((unused))) :
@@ -65,7 +66,7 @@ void		Core::game()
 {
   int		ret = 1;
 
-  while (ret != 0 && ret != -1) {
+  while (ret != 0) {
     ret = _gui->eventManager(_snake);
     _gui->printGame(_snake, _apple);
     if (_snake.move())
